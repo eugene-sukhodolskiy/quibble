@@ -1,0 +1,1 @@
+// in this file must be exist only base initialization game
