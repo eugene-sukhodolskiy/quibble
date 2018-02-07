@@ -8,7 +8,8 @@ var Menu = function(){
 
 	this.update = function(){
 		// rendering game name
-		scopeObjects.gameName.draw();
+		scopeObjects.gameMenu.draw();
+		//
 	}
 
 	this.exit = function(){

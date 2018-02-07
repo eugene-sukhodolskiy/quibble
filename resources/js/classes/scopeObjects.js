@@ -13,4 +13,16 @@ var ScopeObjects = function(params){
 		color: "#C62828",
 		size: self.screen.w / 20
 	});
+
+	this.gameMenu = self.pjs.game.newTextObject({
+		// text: {
+		// 	for(var i in config.gameMenu){
+		// 		text: i;
+		// 	}
+		// },
+		text: "djdjjd \n\ kdkdkd";
+		font: "Verdana",
+		color: "#C62828",
+		size: self.screen.w / 30
+	});
 }
