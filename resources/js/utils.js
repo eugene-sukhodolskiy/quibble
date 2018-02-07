@@ -22,11 +22,11 @@ var SetObjectPosition = function(screen){
 	var self = this;
 
 	this.centerX = function(obj){
-		self.center(obj, 'x');
+		self.pos(obj, 'x');
 	}
 
 	this.centerY = function(obj){
-		self.center(obj, 'y');
+		self.pos(obj, 'y');
 	}
 
 	this.centerXY = function(obj){
@@ -34,18 +34,37 @@ var SetObjectPosition = function(screen){
 		self.centerY(obj);
 	}
 
-	this.center = function(obj, axis){
-		if(isNaN(obj.w) || typeof obj.w == 'undefined' || obj.w == '' || obj.w <= 0 || isNaN(obj.h) || typeof obj.h == 'undefined' || obj.h == '' || obj.h <= 0){
+	this.pos = function(obj, axis, percentage){
+		if(isNaN(obj.w) || typeof obj.w == 'undefined' || obj.w == '' || obj.w <= 0 || isNaN(obj.h) ||
+			typeof obj.h == 'undecenterfined' || obj.h == '' || obj.h <= 0){
 			obj.draw();
 		}
-		if(axis == 'x'){
-			obj.x = self.screen.w / 2 - obj.w / 2;
-		}else if(axis == 'y'){
-			obj.y = self.screen.h / 2 - obj.h / 2;
+		if(typeof percentage == 'undefined'){
+			if(axis == 'x'){
+				obj.x = self.screen.w / 2 - obj.w / 2;
+			}else if(axis == 'y'){
+				obj.y = self.screen.h / 2 - obj.h / 2;
+			}else{
+				console.log('SetObjectPosition', 'I don`t know what you want');
+			}
 		}else{
-			console.log('SetObjectPosition', 'I don`t know what you want');
+			if(axis == 'x'){
+				obj.x = self.screen.w / 100 * percentage;
+			}else if(axis == 'y'){
+				obj.y = self.screen.h / 100 * percentage;
+			}else{
+				console.log('SetObjectPosition', 'I don`t know what you want');
+			}
 		}
 	}
+
+	// this.setPercentage = function(obj, axis, percentage){
+	// 	if(isNaN(obj.w) || typeof obj.w == 'undefined' || obj.w == '' || obj.w <= 0 || isNaN(obj.h) || typeof obj.h == 'undefined' || obj.h == '' || obj.h <= 0){
+	// 		obj.draw();
+	// 	}
+
+
+	// }
 }
 
 /**

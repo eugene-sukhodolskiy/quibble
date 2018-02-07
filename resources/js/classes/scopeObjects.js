@@ -11,7 +11,7 @@ var ScopeObjects = function(params){
 		text: config.gameName,
 		font: "Verdana",
 		color: "#C62828",
-		size: asu.s(30)
+		size: asu.s(70)
 	});
 
 	this.generateMenuItems = function(){
@@ -20,7 +20,7 @@ var ScopeObjects = function(params){
 				text: self.config.gameMenu[i],
 				font: "Verdana",
 				color: "#C62828",
-				size: asu.s(20)
+				size: asu.s(30)
 			});
 		}
 	}
