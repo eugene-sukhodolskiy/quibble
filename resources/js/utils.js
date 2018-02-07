@@ -47,3 +47,31 @@ var SetObjectPosition = function(screen){
 		}
 	}
 }
+
+/**
+ * [AbsoluteSizeUnit class for set absolute unit of text size]
+ *
+ * @param {[object]} screen [object example {w: 100, h: 20}]
+ * @param {[number]} startedSize [started value of size. Defaul value = 1]
+ */
+var AbsoluteSizeUnit = function(screen, startedSize){
+	var self = this;
+	this.screen = screen;
+	this.startedSize = typeof startedSize == 'undefined' ? 1 : startedSize;
+	this.koef = 0;
+
+	this.init = function(){
+		self.koef = self.screen.w / 50;
+		self.koef *= startedSize;
+	}
+
+	this.size = function(size){
+		return self.koef * (size / 10);
+	}
+
+	this.s = function(size){
+		return self.size(size);
+	}
+
+	self.init();
+}

@@ -10,6 +10,7 @@ var screen = game.getWH();
 
 // creating objects
 var positioning = new SetObjectPosition(screen);
+var asu = new AbsoluteSizeUnit(screen, 1);
 var config = new Config();
 var settings = new Settings();
 var data = new Data();
