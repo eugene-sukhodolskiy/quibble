@@ -15,6 +15,7 @@ var Menu = function(){
 	}
 
 	this.update = function(){
+		scopeObjects.monitorParticles();
 		// rendering game name
 		// 
 		setTimeout(function(){ // show game logo 1 s
@@ -28,6 +29,13 @@ var Menu = function(){
 
 			// this.test = scopeObjects.generatePiecesBehindMenu;
 			// this.test.draw();
+			// var timerId = setInterval(function tick() {
+				// for(var i = 0; i < 10; i++){
+				// 	scopeObjects.piece.x = scopeObjects.rand().randW;
+				// 	scopeObjects.piece.y = scopeObjects.rand().randH;
+				// }
+			// }, 1000);
+			pjs.OOP.drawArr(scopeObjects.particles);
 			
 			//
 		// var obj = game.newRectObject({ 

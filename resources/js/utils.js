@@ -15,7 +15,7 @@ var giveMeParamsFromObject = function(obj, params){
 /**
  * [SetObjectPosition class for positioning elements]
  *
- * @param {[object]} screen [screen size an example {w: 1920, h: 1080}]
+ * @param {[object]} screen [screen size for example {w: 1920, h: 1080}]
  */
 var SetObjectPosition = function(screen){
 	this.screen = screen;

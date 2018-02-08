@@ -24,20 +24,61 @@ var ScopeObjects = function(params){
 			});
 		}
 	}
-
-	this.generatePiecesBehindMenu = function(){ // problem
-		for(var i = 0; i < self.config.pieces.amount; i++){
-			//self[i] = self.pjs.game.newRectObject({
-			self.pjs.game.newRectObject({
-				x: 100,
-				y: 100,
-				w: asu.s(self.config.pieces.size),
-				h: asu.s(self.config.pieces.size),
-				fillColor: self.config.pieces.color
-			});
+	this.rand = function(){
+		return {
+			randW: self.pjs.math.random(0, self.screen.w),
+			randH: self.pjs.math.random(0, self.screen.h)
 		}
 	}
 
+	this.particles = []; // частици
+
+	this.generateAnimateParticles = function(){
+		for(var i=0;i<self.config.pieces.amount;i++){
+			self.particles.push(self.getParticle());
+		}
+	}
+
+	this.monitorParticles = function(){
+		if(self.particles.length == 0){
+			self.generateAnimateParticles();
+		}
+		for(var i in self.particles){
+			var pos = self.particles[i].getPosition();
+			if(pos.x > self.screen.w || pos.x < 0 || pos.y > self.screen.h || pos.y < 0 ){
+				self.particles.splice(i, 1, self.getParticle());
+			}
+		}
+	}
+
+	this.getParticle = function(){
+		var piece = {
+			x: self.pjs.math.random(0, self.screen.w),
+			y: self.pjs.math.random(0, self.screen.h),
+			w: asu.s(self.config.pieces.size),
+			h: asu.s(self.config.pieces.size),
+			fillColor: self.config.pieces.color
+		};
+
+		return self.pjs.game.newRectObject(piece);
+	}
+
+	// this.piece = {
+	// 	x: 0,
+	// 	y: 0,
+	// 	w: asu.s(self.config.pieces.size),
+	// 	h: asu.s(self.config.pieces.size),
+	// 	fillColor: self.config.pieces.color
+	// };
+
+	// this.piece = self.pjs.game.newRectObject({
+	// 	x: 0,
+	// 	y: 0,
+	// 	w: asu.s(self.config.pieces.size),
+	// 	h: asu.s(self.config.pieces.size),
+	// 	fillColor: self.config.pieces.color
+	// })
+
 	self.generateMenuItems();
-	self.generatePiecesBehindMenu();
+
 }

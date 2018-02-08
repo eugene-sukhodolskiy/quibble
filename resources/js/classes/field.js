@@ -10,7 +10,7 @@ var Field = function(params){
 
 	// methods
 	
-	/**
+	/**h
 	 * [getCell generate and return circle object]
 	 *
 	 * @param  {[string]} color [circle color]
