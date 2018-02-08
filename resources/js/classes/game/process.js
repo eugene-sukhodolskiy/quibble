@@ -6,7 +6,8 @@ var Process = function(){
 	}
 
 	this.update = function(){
-		
+		field.draw();
+		field.drawBorder();
 	}
 
 	this.exit = function(){
