@@ -1,4 +1,4 @@
-// GameObjects was be renamed to scopeObjects
+// GameObjects was renamed to scopeObjects
 
 var ScopeObjects = function(params){
 	var self = this;
@@ -25,5 +25,19 @@ var ScopeObjects = function(params){
 		}
 	}
 
+	this.generatePiecesBehindMenu = function(){ // problem
+		for(var i = 0; i < self.config.pieces.amount; i++){
+			//self[i] = self.pjs.game.newRectObject({
+			self.pjs.game.newRectObject({
+				x: 100,
+				y: 100,
+				w: asu.s(self.config.pieces.size),
+				h: asu.s(self.config.pieces.size),
+				fillColor: self.config.pieces.color
+			});
+		}
+	}
+
 	self.generateMenuItems();
+	self.generatePiecesBehindMenu();
 }

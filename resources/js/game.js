@@ -31,6 +31,7 @@ game.newLoopFromClassObject("Menu", new Menu());
 game.newLoopFromClassObject("Process", new Process());
 game.newLoopFromClassObject("GameOver", new GameOver());
 // set starting game class
-game.setLoop("Process");
+//game.setLoop("Process");
+game.setLoop("Menu"); // comment it if you need 
 // start rendering game
 game.start(config.fps);

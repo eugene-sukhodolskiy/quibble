@@ -1,4 +1,4 @@
-// GameField was be renamed to field
+// GameField was renamed to field
 
 var Field = function(params){
 	var self = this;

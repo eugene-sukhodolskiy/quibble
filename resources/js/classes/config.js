@@ -18,4 +18,10 @@ var Config = function(){
 
 	this.circleRadius = asu.s(5);
 	this.fieldCellSize = s(asu.s(14), asu.s(14));
+
+	this.pieces = {
+		amount: 5,
+		size: asu.s(2),
+		color: 'blue'//'grey'
+	};
 }
