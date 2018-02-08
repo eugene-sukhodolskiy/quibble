@@ -1,4 +1,4 @@
-// GameField was be renamed to field
+// GameField was renamed to field
 
 var Field = function(params){
 	var self = this;
@@ -10,7 +10,7 @@ var Field = function(params){
 
 	// methods
 	
-	/**
+	/**h
 	 * [getCell generate and return circle object]
 	 *
 	 * @param  {[string]} color [circle color]
