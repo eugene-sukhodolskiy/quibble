@@ -57,14 +57,6 @@ var SetObjectPosition = function(screen){
 			}
 		}
 	}
-
-	// this.setPercentage = function(obj, axis, percentage){
-	// 	if(isNaN(obj.w) || typeof obj.w == 'undefined' || obj.w == '' || obj.w <= 0 || isNaN(obj.h) || typeof obj.h == 'undefined' || obj.h == '' || obj.h <= 0){
-	// 		obj.draw();
-	// 	}
-
-
-	// }
 }
 
 /**
