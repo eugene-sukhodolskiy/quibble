@@ -20,7 +20,7 @@ var Config = function(){
 	this.fieldCellSize = s(asu.s(14), asu.s(14));
 
 	this.pieces = {
-		amount: 5,
+		amount: 20,
 		size: asu.s(2),
 		color: 'blue'//'grey'
 	};

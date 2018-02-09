@@ -24,12 +24,12 @@ var ScopeObjects = function(params){
 			});
 		}
 	}
-	this.rand = function(){
-		return {
-			randW: self.pjs.math.random(0, self.screen.w),
-			randH: self.pjs.math.random(0, self.screen.h)
-		}
-	}
+	// this.rand = function(){
+	// 	return {
+	// 		randW: self.pjs.math.random(0, self.screen.w),
+	// 		randH: self.pjs.math.random(0, self.screen.h)
+	// 	}
+	// }
 
 	this.particles = []; // частици
 
@@ -45,6 +45,17 @@ var ScopeObjects = function(params){
 		}
 		for(var i in self.particles){
 			var pos = self.particles[i].getPosition();
+			// self.particles[i].moveTo({x: self.screen.w, y: self.screen.y, z: 0}, 10);
+			var mouse = pjs.mouseControl.initMouseControl(); // mouse turn on
+			if(i < 3){ // rewrite it
+				self.particles[i].moveTo({x: self.pjs.mouseControl.getPositionS().x, y: self.pjs.mouseControl.getPositionS().y, z: 0}, self.pjs.math.random(0, 2));
+			}else if(i > 3 ){
+				self.particles[i].moveTo({x: self.pjs.math.random(-1 * self.screen.w - 200, self.screen.w + 200) + self.pjs.mouseControl.getPositionS().x / 5,
+				 y: self.pjs.math.random(i * 12, self.screen.h) - self.pjs.mouseControl.getPositionS().y / 2, z: 0}, self.pjs.math.random(0, 5));
+			}else{
+				self.particles[i].moveTo({x: self.pjs.math.random(-10, self.screen.x), y: self.pjs.math.random(0, self.screen.h), z: 0}, self.pjs.math.random(0, 2));
+			}
+
 			if(pos.x > self.screen.w || pos.x < 0 || pos.y > self.screen.h || pos.y < 0 ){
 				self.particles.splice(i, 1, self.getParticle());
 			}
@@ -62,22 +73,6 @@ var ScopeObjects = function(params){
 
 		return self.pjs.game.newRectObject(piece);
 	}
-
-	// this.piece = {
-	// 	x: 0,
-	// 	y: 0,
-	// 	w: asu.s(self.config.pieces.size),
-	// 	h: asu.s(self.config.pieces.size),
-	// 	fillColor: self.config.pieces.color
-	// };
-
-	// this.piece = self.pjs.game.newRectObject({
-	// 	x: 0,
-	// 	y: 0,
-	// 	w: asu.s(self.config.pieces.size),
-	// 	h: asu.s(self.config.pieces.size),
-	// 	fillColor: self.config.pieces.color
-	// })
 
 	self.generateMenuItems();
 
