@@ -14,6 +14,13 @@ var ScopeObjects = function(params){
 		size: asu.s(70)
 	});
 
+		this.bestScore = self.pjs.game.newTextObject({
+		text: "Best score: " + "result", // where should I get it?
+		font: "Verdana",
+		color: "#C62828",
+		size: asu.s(10)
+	});
+
 	this.generateMenuItems = function(){
 		for(var i in self.config.gameMenu){
 			self[i] = self.pjs.game.newTextObject({

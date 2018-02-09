@@ -5,7 +5,10 @@ var Menu = function(){
 	this.flag = false;
 	this.entry = function(){
 		positioning.centerXY(scopeObjects.gameName);
-		
+
+		positioning.pos(scopeObjects.bestScore, 'x', 70);
+		positioning.pos(scopeObjects.bestScore, 'y', 5);
+
 		var counter = 0;
 		for(var i in config.gameMenu){
 			counter++;
@@ -18,7 +21,7 @@ var Menu = function(){
 		scopeObjects.monitorParticles();
 		// rendering game name
 		// 
-		setTimeout(function(){ // show game logo 1 s
+		setTimeout(function(){ // show game logo 2.5 s
 			self.flag = true;
 		}, 2500);
 		
@@ -26,6 +29,9 @@ var Menu = function(){
 			for(var i in config.gameMenu){
 				scopeObjects[i].draw(); //
 			}
+
+			scopeObjects.bestScore.draw();
+
 			self.menuController();
 
 			// this.test = scopeObjects.generatePiecesBehindMenu;
