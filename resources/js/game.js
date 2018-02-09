@@ -6,11 +6,12 @@ var game = pjs.game;
 var p = pjs.vector.point;
 var s = pjs.vector.size;
 var screen = game.getWH();
+var mouse = pjs.mouseControl.initMouseControl();
 
 
 // creating objects
 var positioning = new SetObjectPosition(screen);
-var asu = new AbsoluteSizeUnit(screen, 1);
+var asu = new AbsoluteSizeUnit(screen, 1.7);
 var config = new Config();
 var settings = new Settings();
 var data = new Data();

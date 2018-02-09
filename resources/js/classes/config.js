@@ -16,12 +16,14 @@ var Config = function(){
 
 	this.circleColors = ['red', 'blue', 'yellow', 'green', 'grey'];
 
-	this.circleRadius = asu.s(5);
-	this.fieldCellSize = s(asu.s(14), asu.s(14));
+	this.circleRadius = asu.s(10);
+	this.fieldCellSize = s(asu.s(28), asu.s(28));
 
 	this.pieces = {
 		amount: 20,
 		size: asu.s(2),
 		color: 'blue'//'grey'
 	};
+
+	this.controlType = 'mouse'; // mouse or touch
 }

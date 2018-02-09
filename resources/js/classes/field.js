@@ -35,7 +35,7 @@ var Field = function(params){
 	}
 
 	this.initFirstStateMatrix = function(){
-		var startPos =  self.pjs.vector.point(100, 100);
+		var startPos =  self.pjs.vector.point(asu.s(20), asu.s(200));
 		
 		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
 			for(var n=0; n<self.config.fieldMatrixSize.h; n++){

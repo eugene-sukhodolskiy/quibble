@@ -45,9 +45,13 @@ var ScopeObjects = function(params){
 		}
 		for(var i in self.particles){
 			var pos = self.particles[i].getPosition();
+
+			// your code need write to function with name particlesMove or another name
 			// self.particles[i].moveTo({x: self.screen.w, y: self.screen.y, z: 0}, 10);
+			// this line need write in game.js, because now, she init 60 times per second !!!!! I DO IT
 			var mouse = pjs.mouseControl.initMouseControl(); // mouse turn on
 			if(i < 3){ // rewrite it
+				// u can use self.pjs.vector.point(x, y); instead {x: 1, y: 1, z: 0}
 				self.particles[i].moveTo({x: self.pjs.mouseControl.getPositionS().x, y: self.pjs.mouseControl.getPositionS().y, z: 0}, self.pjs.math.random(0, 2));
 			}else if(i > 3 ){
 				self.particles[i].moveTo({x: self.pjs.math.random(-1 * self.screen.w - 200, self.screen.w + 200) + self.pjs.mouseControl.getPositionS().x / 5,

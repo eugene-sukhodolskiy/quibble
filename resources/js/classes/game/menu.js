@@ -26,6 +26,7 @@ var Menu = function(){
 			for(var i in config.gameMenu){
 				scopeObjects[i].draw(); //
 			}
+			self.menuController();
 
 			// this.test = scopeObjects.generatePiecesBehindMenu;
 			// this.test.draw();
@@ -54,5 +55,25 @@ var Menu = function(){
 
 	this.exit = function(){
 		
+	}
+
+	this.controlCallback = {
+		'NewGame': function(t){
+			game.setLoop('Process');
+		}
+	}
+	// additionally methods
+	this.menuController = function(){
+		for(var i in self.controlCallback){
+			if(config.controlType == 'mouse'){
+				if(mouse.isPeekObject('LEFT', scopeObjects[i])){
+					self.controlCallback[i](scopeObjects[i]);
+				}
+			}else if(self.controlType == 'touch'){
+				if(touch.isPeekObject(scopeObjects[i])){
+					self.controlCallback[i](scopeObjects[i]);
+				}
+			}
+		}
 	}
 }
