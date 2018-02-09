@@ -19,10 +19,13 @@ var Config = function(){
 	this.circleRadius = asu.s(10);
 	this.fieldCellSize = s(asu.s(28), asu.s(28));
 
-	this.pieces = {
-		amount: 20,
-		size: asu.s(2),
-		color: 'blue'//'grey'
+	this.particles = {
+		amount: 400,
+		size: asu.s(0.3),
+		color: 'green',
+		minSpeed: 1, // particles movement speed
+		maxSpeed: 5,
+
 	};
 
 	this.controlType = 'mouse'; // mouse or touch
