@@ -34,6 +34,14 @@ var SetObjectPosition = function(screen){
 		self.centerY(obj);
 	}
 
+	this.posX = function(obj, percent){
+		self.pos(obj, 'x', percent);
+	}
+
+	this.posY = function(obj, percent){
+		self.pos(obj, 'y', percent);
+	}
+
 	this.pos = function(obj, axis, percentage){
 		if(isNaN(obj.w) || typeof obj.w == 'undefined' || obj.w == '' || obj.w <= 0 || isNaN(obj.h) ||
 			typeof obj.h == 'undecenterfined' || obj.h == '' || obj.h <= 0){
