@@ -30,4 +30,5 @@ var Config = function(){
 
 	this.controlType = 'mouse'; // mouse or touch
 	this.moveCellSpeed = .1;
+	this.startCellGridPos = pjs.vector.point(asu.s(20), asu.s(100));
 }

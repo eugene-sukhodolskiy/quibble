@@ -38,7 +38,7 @@ var Field = function(params){
 	}
 
 	this.initFirstStateMatrix = function(){
-		var startPos =  self.pjs.vector.point(asu.s(20), asu.s(200));
+		var startPos = self.config.startCellGridPos;
 		
 		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
 			for(var n=0; n<self.config.fieldMatrixSize.h; n++){
@@ -57,7 +57,6 @@ var Field = function(params){
 			for(var n in self.matrix[i]){
 				if(!self.matrix[i][n]) continue;
 				self.matrix[i][n].draw();
-				self.matrix[i][n].drawStaticBox();
 			}
 		}
 
@@ -81,32 +80,6 @@ var Field = function(params){
 
 		self.gridCell.draw();
 	}
-
-	// this.monitorTouchOnCell = function(){
-	// 	if(self.touchFlag === true) return false;
-
-	// 	if(!(self.config.controlType == 'mouse' && self.mouse.isDown('LEFT'))) return false;
-
-	// 	if(self.config.controlType == 'mouse'){
-	// 		var box = self.mouse.getPosition();
-	// 	}else if(self.config.controlType == 'touch'){
-	// 		var box = self.touch.getPosition();
-	// 	}
-
-	// 	box.w = 1;
-	// 	box.h = 1;
-
-	// 	for(var i=0; i<self.config.fieldMatrixSize.w; i++){
-	// 		for(var n=0; n<self.config.fieldMatrixSize.h; n++){
-
-	// 			if(self.matrix[i][n].isIntersect(box)){
-	// 				self.touchFlag = true;
-	// 				//self.activeCell.push(self.matrix[i][n]);
-	// 				return true;
-	// 			}
-	// 		}
-	// 	}
-	// }
 
 	this.checkCellOnActive = function(obj){
 		for(var i in self.activeCell){
@@ -169,9 +142,10 @@ var Field = function(params){
 			self.matrix[self.activeCell[i].matrixIndex.i][self.activeCell[i].matrixIndex.n].setVisible(false);
 		}
 
-		self.existCellDown();
+		// self.existCellDown();
 		self.cellDown();
 		self.removeUnvisibleCells();
+		self.setMoveToPoint();
 	}
 
 	this.cellDown = function(){
@@ -186,8 +160,8 @@ var Field = function(params){
 						var matInx1 = self.matrix[i][n].matrixIndex;
 						var matInx2 = self.matrix[i][n - 1].matrixIndex;
 						self.matrix[i][n] = self.matrix[i][n - 1];
-						// self.matrix[i][n].setPosition(pos);
-						self.matrix[i][n].moveToPoint = pos;
+						//self.matrix[i][n].setPosition(pos);
+						// self.matrix[i][n].moveToPoint = pos;
 						self.matrix[i][n].matrixIndex = matInx1; 
 						self.matrix[i][n - 1] = tmp;
 						self.matrix[i][n - 1].matrixIndex = matInx2;
@@ -199,39 +173,40 @@ var Field = function(params){
 	}
 
 	this.removeUnvisibleCells = function(){
+		var startPos = self.config.startCellGridPos;
 		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
 			for(var n=0; n<self.config.fieldMatrixSize.h; n++){
 				if(!self.matrix[i][n].isVisible()){
-					//self.matrix[i][n] = false;
 					var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(100, 100));
-					positioning.posX(cell, 50);
+					// positioning.posX(cell, 50);
+					cell.setPositionC(self.pjs.vector.point(startPos.x + self.config.fieldCellSize.w * i, 100));
 					cell.matrixIndex = {"i": i, "n": n};
-					cell.moveToPoint = self.matrix[i][n].getPosition();
+					//cell.moveToPoint = self.matrix[i][n].getPosition();
 					self.matrix[i][n] = cell;
 				}
 			}
 		}
 	}
 
-	this.generateNewCells = function(){
-		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
-			for(var n=0; n<self.config.fieldMatrixSize.h; n++){
-				if(self.matrix[i][n] !== false) continue;
+	// this.generateNewCells = function(){
+	// 	for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+	// 		for(var n=0; n<self.config.fieldMatrixSize.h; n++){
+	// 			if(self.matrix[i][n] !== false) continue;
 
-				var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(100, 100));
-				cell.matrixIndex = {"i": i, "n": n};
-				self.matrix[i][n] = cell;
-			}
-		}
-	}
+	// 			var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(100, 100));
+	// 			cell.matrixIndex = {"i": i, "n": n};
+	// 			self.matrix[i][n] = cell;
+	// 		}
+	// 	}
+	// }
 
 	this.moveToPoint = function(){
 		for(var i in self.matrix){
 			for(var n in self.matrix[i]){
 				if(typeof self.matrix[i][n].moveToPoint != 'undefined' && self.matrix[i][n].moveToPoint != false && self.matrix[i][n].moveToPoint.y != self.matrix[i][n].y){
-					self.matrix[i][n].moveTo(self.matrix[i][n].moveToPoint, self.config.moveCellSpeed * self.pjs.game.getDT(.5));
-
-					if(Math.abs(self.matrix[i][n].y - self.matrix[i][n].moveToPoint.y) < 2){
+					self.matrix[i][n].moveToC(self.matrix[i][n].moveToPoint, self.config.moveCellSpeed * self.pjs.game.getDT(.5));
+					var center = self.matrix[i][n].getPositionC();
+					if(Math.abs(center.y - self.matrix[i][n].moveToPoint.y) < 2){
 						self.matrix[i][n].moveToPoint = false;
 					}
 				}
@@ -239,23 +214,15 @@ var Field = function(params){
 		}
 	}
 
-	// this.cellDown = function(){
-	// 	for(var i=0; i<self.config.fieldMatrixSize.w; i++){
-	// 		var emptyCells = [];
-	// 		var fl = false;
-	// 		var inx = 0;
-	// 		for(var n=self.config.fieldMatrixSize.h - 1; n>=0; n++){
-	// 			if(!self.matrix[i][n].isVisible()){
-	// 				emptyCells.push(self.matrix[i][n]);
-	// 				self.fl = true;
-	// 			}
+	this.setMoveToPoint = function(){
+		var startPos = self.config.startCellGridPos;
 
-	// 			if(self.fl && ){
-	// 				self.self.matrix[i][n].moveToCellCoords = emptyCells[inx++];
-	// 			}
-	// 		}
-	// 	}
-	// }
+		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+			for(var n=0; n<self.config.fieldMatrixSize.h; n++){
+				self.matrix[i][n].moveToPoint = self.pjs.vector.point(startPos.x + self.config.fieldCellSize.w * i, startPos.y + self.config.fieldCellSize.h * n);
+			}
+		}
+	}
 
 	this.existCellDown = function(){ 
 		var downPos = {};
@@ -267,7 +234,7 @@ var Field = function(params){
 			}
 		}
 
-		console.log(downPos);
+		// console.log(downPos);
 	}
 
 	this.monitor = function(){

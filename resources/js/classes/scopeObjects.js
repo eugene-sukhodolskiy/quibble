@@ -104,4 +104,6 @@ var ScopeObjects = function(params){
 
 	self.generateMenuItems();
 
+	// self.line = 
+
 }
