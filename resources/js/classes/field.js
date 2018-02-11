@@ -57,6 +57,7 @@ var Field = function(params){
 			for(var n in self.matrix[i]){
 				if(!self.matrix[i][n]) continue;
 				self.matrix[i][n].draw();
+				self.matrix[i][n].drawStaticBox();
 			}
 		}
 
@@ -187,9 +188,9 @@ var Field = function(params){
 						self.matrix[i][n] = self.matrix[i][n - 1];
 						// self.matrix[i][n].setPosition(pos);
 						self.matrix[i][n].moveToPoint = pos;
-						self.matrix[i][n].matrixIndex = matInx2; 
+						self.matrix[i][n].matrixIndex = matInx1; 
 						self.matrix[i][n - 1] = tmp;
-						self.matrix[i][n - 1].matrixIndex = matInx1;
+						self.matrix[i][n - 1].matrixIndex = matInx2;
 						self.matrix[i][n - 1].setPosition(prevpos);
 					}
 				}
@@ -255,7 +256,7 @@ var Field = function(params){
 	// 	}
 	// }
 
-	this.existCellDown = function(){
+	this.existCellDown = function(){ 
 		var downPos = {};
 		for(var i in self.activeCell){
 			if(typeof downPos[self.activeCell[i].matrixIndex.i] == 'undefined'){
