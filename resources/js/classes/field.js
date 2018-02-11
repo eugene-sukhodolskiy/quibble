@@ -9,6 +9,7 @@ var Field = function(params){
 	this.activeCell = [];
 	this.gridCell = false;
 	this.touchFlag = false;
+	this.lineArr = [];
 
 
 	// methods
@@ -61,6 +62,15 @@ var Field = function(params){
 		}
 
 		self.moveToPoint();
+		self.drawTouchLines();
+	}
+
+	this.drawTouchLines = function(){
+		if(!self.touchFlag) return false;
+
+		for(var i=0;i<self.activeCell.length - 1; i++){
+			scopeObjects.getLine(self.activeCell[i].getPositionC(), self.activeCell[i+1].getPositionC()).draw();
+		}
 	}
 	
 	this.drawBorder = function(){
@@ -241,10 +251,6 @@ var Field = function(params){
 		// self.monitorTouchOnCell();
 		self.monitorOverOnCellAfterTouch();
 		self.monitorOutOnCellAfterTouch();
-	}
-
-	this.drawTouchLine = function(){
-
 	}
 
 	self.initFirstStateMatrix();

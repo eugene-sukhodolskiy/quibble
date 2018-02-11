@@ -67,6 +67,7 @@ var Menu = function(){
 		'NewGame': function(t){
 			game.setLoop('Process');
 		}
+		// load Game
 	}
 	// additionally methods
 	this.menuController = function(){
