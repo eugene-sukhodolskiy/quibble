@@ -20,13 +20,14 @@ var Config = function(){
 	this.fieldCellSize = s(asu.s(28), asu.s(28));
 
 	this.particles = {
-		amount: 400,
-		size: asu.s(0.3),
-		color: 'green',
+		amount: 80,
+		size: asu.s(1),
+		color: 'blue',
 		minSpeed: 1, // particles movement speed
 		maxSpeed: 5,
 
 	};
 
 	this.controlType = 'mouse'; // mouse or touch
+	this.moveCellSpeed = .1;
 }

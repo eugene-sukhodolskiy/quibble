@@ -8,7 +8,7 @@ var Process = function(){
 	this.update = function(){
 		field.draw();
 		// field.drawBorder();
-		
+		field.monitor();
 	}
 
 	this.exit = function(){

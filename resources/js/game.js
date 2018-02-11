@@ -7,6 +7,7 @@ var p = pjs.vector.point;
 var s = pjs.vector.size;
 var screen = game.getWH();
 var mouse = pjs.mouseControl.initMouseControl();
+var touch = pjs.touchControl.initTouchControl();
 
 
 // creating objects
@@ -24,7 +25,9 @@ var scopeObjects = new ScopeObjects({
 var field = new Field({
 	pjs: pjs,
 	screen: screen,
-	config: config
+	config: config,
+	mouse: mouse,
+	touch: touch
 });
 
 // initialization game classes

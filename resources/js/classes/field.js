@@ -5,7 +5,10 @@ var Field = function(params){
 	giveMeParamsFromObject(this, params);
 	// vars
 	this.matrix = [];
+	this.shadowMatrix = [];
+	this.activeCell = [];
 	this.gridCell = false;
+	this.touchFlag = false;
 
 
 	// methods
@@ -43,6 +46,7 @@ var Field = function(params){
 					self.matrix[i] = [];
 				}
 				var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(startPos.x + self.config.fieldCellSize.w * i, startPos.y + self.config.fieldCellSize.h * n));
+				cell.matrixIndex = {"i": i, "n": n};
 				self.matrix[i].push(cell);
 			}
 		}
@@ -50,8 +54,13 @@ var Field = function(params){
 
 	this.draw = function(){
 		for(var i in self.matrix){
-			self.pjs.OOP.drawArr(self.matrix[i]);
+			for(var n in self.matrix[i]){
+				if(!self.matrix[i][n]) continue;
+				self.matrix[i][n].draw();
+			}
 		}
+
+		self.moveToPoint();
 	}
 	
 	this.drawBorder = function(){
@@ -70,6 +79,203 @@ var Field = function(params){
 		}
 
 		self.gridCell.draw();
+	}
+
+	// this.monitorTouchOnCell = function(){
+	// 	if(self.touchFlag === true) return false;
+
+	// 	if(!(self.config.controlType == 'mouse' && self.mouse.isDown('LEFT'))) return false;
+
+	// 	if(self.config.controlType == 'mouse'){
+	// 		var box = self.mouse.getPosition();
+	// 	}else if(self.config.controlType == 'touch'){
+	// 		var box = self.touch.getPosition();
+	// 	}
+
+	// 	box.w = 1;
+	// 	box.h = 1;
+
+	// 	for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+	// 		for(var n=0; n<self.config.fieldMatrixSize.h; n++){
+
+	// 			if(self.matrix[i][n].isIntersect(box)){
+	// 				self.touchFlag = true;
+	// 				//self.activeCell.push(self.matrix[i][n]);
+	// 				return true;
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+	this.checkCellOnActive = function(obj){
+		for(var i in self.activeCell){
+			if(self.activeCell[i].id == obj.id){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	this.monitorOverOnCellAfterTouch = function(){
+
+		if(!(self.config.controlType == 'mouse' && self.mouse.isDown("LEFT")) && !(self.config.controlType == 'touch' && self.touch.isDown())) return false;
+
+		if(self.touchFlag === false && self.activeCell.length != 0){
+			self.activeCell = [];
+		}
+
+		self.touchFlag = true;
+
+		if(self.config.controlType == 'mouse'){
+			var box = self.mouse.getPosition();
+		}else if(self.config.controlType == 'touch'){
+			var box = self.touch.getPosition();
+		}
+
+		box.w = 1;
+		box.h = 1;
+
+		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+			for(var n=0; n<self.config.fieldMatrixSize.h; n++){
+
+				if(!self.matrix[i][n].isVisible()) {
+					continue;
+				}
+
+				if(self.matrix[i][n].isStaticIntersect(box)){
+					if(!self.checkCellOnActive(self.matrix[i][n])){
+						self.activeCell.push(self.matrix[i][n]);
+					}
+					return true;
+				}
+			}
+		}
+	}
+
+	this.monitorOutOnCellAfterTouch = function(){
+		if(self.touchFlag === false) return false;
+
+		if(self.config.controlType == 'mouse' && self.mouse.isUp("LEFT") || self.config.controlType == 'touch' && self.touch.isUp()){
+			self.touchFlag = false;
+			console.log(self.activeCell);
+			self.removeActivatedCells();
+		}
+	}
+
+	this.removeActivatedCells = function(){
+		for(var i in self.activeCell){
+			self.matrix[self.activeCell[i].matrixIndex.i][self.activeCell[i].matrixIndex.n].setVisible(false);
+		}
+
+		self.existCellDown();
+		self.cellDown();
+		self.removeUnvisibleCells();
+	}
+
+	this.cellDown = function(){
+		for(var m = 0; m < self.config.fieldMatrixSize.h; m++){
+			for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+				for(var n=1; n<self.config.fieldMatrixSize.h; n++){
+					if(!self.matrix[i][n].isVisible()){
+						console.log(self.matrix[i][n]);
+						var tmp = self.matrix[i][n];
+						var pos = self.matrix[i][n].getPosition();
+						var prevpos = self.matrix[i][n - 1].getPosition();
+						var matInx1 = self.matrix[i][n].matrixIndex;
+						var matInx2 = self.matrix[i][n - 1].matrixIndex;
+						self.matrix[i][n] = self.matrix[i][n - 1];
+						// self.matrix[i][n].setPosition(pos);
+						self.matrix[i][n].moveToPoint = pos;
+						self.matrix[i][n].matrixIndex = matInx2; 
+						self.matrix[i][n - 1] = tmp;
+						self.matrix[i][n - 1].matrixIndex = matInx1;
+						self.matrix[i][n - 1].setPosition(prevpos);
+					}
+				}
+			}
+		}
+	}
+
+	this.removeUnvisibleCells = function(){
+		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+			for(var n=0; n<self.config.fieldMatrixSize.h; n++){
+				if(!self.matrix[i][n].isVisible()){
+					//self.matrix[i][n] = false;
+					var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(100, 100));
+					cell.matrixIndex = {"i": i, "n": n};
+					cell.moveToPoint = self.matrix[i][n].getPosition();
+					self.matrix[i][n] = cell;
+				}
+			}
+		}
+	}
+
+	this.generateNewCells = function(){
+		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+			for(var n=0; n<self.config.fieldMatrixSize.h; n++){
+				if(self.matrix[i][n] !== false) continue;
+
+				var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(100, 100));
+				cell.matrixIndex = {"i": i, "n": n};
+				self.matrix[i][n] = cell;
+			}
+		}
+	}
+
+	this.moveToPoint = function(){
+		for(var i in self.matrix){
+			for(var n in self.matrix[i]){
+				if(typeof self.matrix[i][n].moveToPoint != 'undefined' && self.matrix[i][n].moveToPoint != false && self.matrix[i][n].moveToPoint.y != self.matrix[i][n].y){
+					self.matrix[i][n].moveTo(self.matrix[i][n].moveToPoint, self.config.moveCellSpeed * self.pjs.game.getDT(.5));
+
+					if(Math.abs(self.matrix[i][n].y - self.matrix[i][n].moveToPoint.y) < 2){
+						self.matrix[i][n].moveToPoint = false;
+					}
+				}
+			}
+		}
+	}
+
+	// this.cellDown = function(){
+	// 	for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+	// 		var emptyCells = [];
+	// 		var fl = false;
+	// 		var inx = 0;
+	// 		for(var n=self.config.fieldMatrixSize.h - 1; n>=0; n++){
+	// 			if(!self.matrix[i][n].isVisible()){
+	// 				emptyCells.push(self.matrix[i][n]);
+	// 				self.fl = true;
+	// 			}
+
+	// 			if(self.fl && ){
+	// 				self.self.matrix[i][n].moveToCellCoords = emptyCells[inx++];
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+	this.existCellDown = function(){
+		var downPos = {};
+		for(var i in self.activeCell){
+			if(typeof downPos[self.activeCell[i].matrixIndex.i] == 'undefined'){
+				downPos[self.activeCell[i].matrixIndex.i] = self.activeCell[i].matrixIndex.n;
+			}else if(self.activeCell[i].matrixIndex.n > downPos[self.activeCell[i].matrixIndex.i]){
+				downPos[self.activeCell[i].matrixIndex.i] = self.activeCell[i].matrixIndex.n;
+			}
+		}
+
+		console.log(downPos);
+	}
+
+	this.monitor = function(){
+		// self.monitorTouchOnCell();
+		self.monitorOverOnCellAfterTouch();
+		self.monitorOutOnCellAfterTouch();
+	}
+
+	this.drawTouchLine = function(){
+
 	}
 
 	self.initFirstStateMatrix();
