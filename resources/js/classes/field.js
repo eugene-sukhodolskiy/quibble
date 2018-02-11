@@ -204,6 +204,7 @@ var Field = function(params){
 				if(!self.matrix[i][n].isVisible()){
 					//self.matrix[i][n] = false;
 					var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(100, 100));
+					positioning.posX(cell, 50);
 					cell.matrixIndex = {"i": i, "n": n};
 					cell.moveToPoint = self.matrix[i][n].getPosition();
 					self.matrix[i][n] = cell;
@@ -218,7 +219,6 @@ var Field = function(params){
 				if(self.matrix[i][n] !== false) continue;
 
 				var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(100, 100));
-				positioning.centerX(cell);
 				cell.matrixIndex = {"i": i, "n": n};
 				self.matrix[i][n] = cell;
 			}
