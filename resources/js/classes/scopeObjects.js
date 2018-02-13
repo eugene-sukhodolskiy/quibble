@@ -126,9 +126,4 @@ var ScopeObjects = function(params){
 	positioning.posX(self.gameScore, 70);
 	positioning.posY(self.gameScore, 5);
 
-	// this.tmpMatrixObj = function(params){
-	// 	giveMeParamsFromObject(this, params);
-	// 	console.log("Success!");
-	// }
-
 }
