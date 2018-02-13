@@ -11,6 +11,8 @@ var Process = function(){
 		field.draw();
 		// field.drawBorder();
 		field.monitor();
+		scopeObjects.gameScore.text = 'Score: ' + data.currentScore;
+		scopeObjects.gameScore.draw();
 		var time = pjs.game.getTime();
 		
 		if(pjs.game.getTime() - self.tmpT > 1000){

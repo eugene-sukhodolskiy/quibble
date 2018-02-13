@@ -114,4 +114,14 @@ var ScopeObjects = function(params){
 		return circ;
 	}
 
+	this.gameScore = self.pjs.game.newTextObject({
+		size: asu.s(16),
+		text: 'Score: ' + data.currentScore,
+		color: '#C62828',
+		font: 'Verdana'
+	});
+
+	positioning.posX(self.gameScore, 70);
+	positioning.posY(self.gameScore, 5);
+
 }

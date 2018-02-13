@@ -179,6 +179,7 @@ var Field = function(params){
 		}
 
 		// self.existCellDown();
+		self.scoreCounter();
 		self.cellDown();
 		self.removeUnvisibleCells();
 		self.setMoveToPoint();
@@ -189,7 +190,7 @@ var Field = function(params){
 			for(var i=0; i<self.config.fieldMatrixSize.w; i++){
 				for(var n=1; n<self.config.fieldMatrixSize.h; n++){
 					if(!self.matrix[i][n].isVisible()){
-						console.log(self.matrix[i][n]);
+						// console.log(self.matrix[i][n]);
 						var tmp = self.matrix[i][n];
 						var pos = self.matrix[i][n].getPosition();
 						var prevpos = self.matrix[i][n - 1].getPosition();
@@ -244,6 +245,10 @@ var Field = function(params){
 		}
 
 		return true;
+	}
+
+	this.scoreCounter = function(){
+		data.currentScore += self.activeCell.length;
 	}
 
 	this.moveToPoint = function(){
