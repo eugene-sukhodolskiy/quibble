@@ -30,6 +30,7 @@ var Menu = function(){
 				scopeObjects[i].draw(); //
 			}
 
+			scopeObjects.bestScore.text = 'Best: ' + data.bestScore;
 			scopeObjects.bestScore.draw();
 
 			self.menuController();

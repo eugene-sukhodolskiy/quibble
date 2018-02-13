@@ -248,7 +248,7 @@ var Field = function(params){
 	}
 
 	this.scoreCounter = function(){
-		data.currentScore += self.activeCell.length;
+		data.scorePlus(self.activeCell.length);
 	}
 
 	this.moveToPoint = function(){
