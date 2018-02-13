@@ -10,14 +10,21 @@ var Config = function(){
 	};
 
 	this.fieldMatrixSize = {
-		w: 10,
-		h: 10
+		w: 3,
+		h: 3
 	};
+	
+	// this.fieldMatrixSize = {
+	// 	w: 6,
+	// 	h: 12
+	// };
 
-	this.circleColors = ['red', 'blue', 'yellow', 'green', 'grey'];
+	this.circleColors = ['red', 'blue', 'yellow', 'green', 'grey', 'black', 'orange', 'pink'];
 
 	this.circleRadius = asu.s(10);
+	// this.circleRadius = asu.s(14);
 	this.fieldCellSize = s(asu.s(28), asu.s(28));
+	 // this.fieldCellSize = s(asu.s(42), asu.s(35));
 
 	this.particles = {
 		amount: 80,
@@ -33,5 +40,5 @@ var Config = function(){
 	this.startCellGridPos = pjs.vector.point(asu.s(20), asu.s(100));
 	this.lineWidth = asu.s(5);
 	this.lineColor = '#03A9F4';
-	this.minActiveCellCount = 3;
+	this.minActiveCellCount = 2;
 }

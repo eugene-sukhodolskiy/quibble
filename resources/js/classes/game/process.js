@@ -8,6 +8,9 @@ var Process = function(){
 	}
 
 	this.update = function(){
+		if(field.checkOnGameOver()){
+			game.setLoop('GameOver');
+		}
 		field.draw();
 		// field.drawBorder();
 		field.monitor();

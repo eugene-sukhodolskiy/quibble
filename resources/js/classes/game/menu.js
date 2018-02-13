@@ -48,6 +48,10 @@ var Menu = function(){
 
 	this.controlCallback = {
 		'NewGame': function(t){
+			if(data.gameoverState == true){
+				data.gameoverState = false;
+				field.resetMatrix();
+			}
 			game.setLoop('Process');
 		},
 		'LoadGame': function(t){

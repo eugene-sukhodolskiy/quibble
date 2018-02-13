@@ -60,6 +60,11 @@ var Field = function(params){
 		}
 	}
 
+	this.resetMatrix = function(){
+		self.matrix = [];
+		self.initFirstStateMatrix();
+	}
+
 	this.draw = function(){
 		for(var i in self.matrix){
 			for(var n in self.matrix[i]){
@@ -273,6 +278,48 @@ var Field = function(params){
 				self.matrix[i][n].moveToPoint = self.pjs.vector.point(startPos.x + self.config.fieldCellSize.w * i, startPos.y + self.config.fieldCellSize.h * n);
 			}
 		}
+	}
+
+	this.checkOnGameOver = function(){
+		var ns = self.config.fieldMatrixSize.h - 1;
+		var is = self.config.fieldMatrixSize.w - 1;
+		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+			for(var n=0; n<self.config.fieldMatrixSize.h; n++){
+				if(n > 0 && self.matrix[i][n].fillColor == self.matrix[i][n - 1].fillColor){
+					return false;
+				}
+
+				if(n < ns && self.matrix[i][n].fillColor == self.matrix[i][n + 1].fillColor){
+					return false;
+				}
+
+				if(i < is && self.matrix[i][n].fillColor == self.matrix[i + 1][n].fillColor){
+					return false;
+				}
+
+				if(i > 0 && self.matrix[i][n].fillColor == self.matrix[i - 1][n].fillColor){
+					return false;
+				}
+
+				if(i > 0 && n > 0 && self.matrix[i][n].fillColor == self.matrix[i - 1][n - 1].fillColor){
+					return false;
+				}
+
+				if(i > 0 && n < ns && self.matrix[i][n].fillColor == self.matrix[i - 1][n + 1].fillColor){
+					return false;
+				}
+
+				if(i < is && n > 0 && self.matrix[i][n].fillColor == self.matrix[i + 1][n - 1].fillColor){
+					return false;
+				}
+
+				if(i < is && n < ns && self.matrix[i][n].fillColor == self.matrix[i + 1][n + 1].fillColor){
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	this.existCellDown = function(){ 

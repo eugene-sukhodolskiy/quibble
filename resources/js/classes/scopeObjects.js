@@ -14,7 +14,14 @@ var ScopeObjects = function(params){
 		size: asu.s(70)
 	});
 
-		this.bestScore = self.pjs.game.newTextObject({
+	this.gameOver = self.pjs.game.newTextObject({
+		text: "Game Over",
+		font: "Verdana",
+		color: "#C62828",
+		size: asu.s(30)
+	});
+
+	this.bestScore = self.pjs.game.newTextObject({
 		text: "Best score: " + "result", // where should I get it?
 		font: "Verdana",
 		color: "#C62828",
