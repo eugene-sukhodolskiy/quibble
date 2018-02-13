@@ -81,7 +81,7 @@ var ScopeObjects = function(params){
 			// this line need write in game.js, because now, she init 60 times per second !!!!! I DO IT 
 			// How can I do it? It doesn't want to work like you write... moveTo works only in loop... Or maybe I don't undestend something?
 
-			self.particles[i].moveTo(self.pjs.vector.point(self.moveParticlesArr[i].moveX, self.moveParticlesArr[i].moveY), self.moveParticlesArr[i].speed);
+			self.particles[i].moveTo(self.pjs.vector.point(self.moveParticlesArr[i].moveX, self.moveParticlesArr[i].moveY), self.moveParticlesArr[i].speed * self.pjs.game.getDT(20));
 
 			if(pos.x > self.screen.w || pos.x < 0 || pos.y > self.screen.h || pos.y < 0 ){ // del if particle leave game field
 				self.particles.splice(i, 1, self.getParticle());

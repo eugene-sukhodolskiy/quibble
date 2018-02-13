@@ -34,26 +34,8 @@ var Menu = function(){
 
 			self.menuController();
 
-			// this.test = scopeObjects.generatePiecesBehindMenu;
-			// this.test.draw();
-			// var timerId = setInterval(function tick() {
-				// for(var i = 0; i < 10; i++){
-				// 	scopeObjects.piece.x = scopeObjects.rand().randW;
-				// 	scopeObjects.piece.y = scopeObjects.rand().randH;
-				// }
-			// }, 1000);
 			pjs.OOP.drawArr(scopeObjects.particles);
-			
-			//
-		// var obj = game.newRectObject({ 
-		//      x : 100, 
-		//      y : 100, 
-		//      w : 50, 
-		//      h : 50, 
-		//      fillColor : "#FBFE6F", 
-		// });
-		// var piece = pjs.game.newRectObject(obj);
-		// piece.draw();
+
 		}else{
 			scopeObjects.gameName.draw();
 		}
@@ -66,6 +48,14 @@ var Menu = function(){
 	this.controlCallback = {
 		'NewGame': function(t){
 			game.setLoop('Process');
+		},
+		'LoadGame': function(t){
+			// console.log(field.matrix);
+			// storage.matrixLoad();
+			// console.log("!!!!!!!!!!!!!!!!");
+			// console.log(field.matrix);
+			game.setLoop('Process');
+			storage.matrixLoad();
 		}
 		// load Game
 	}

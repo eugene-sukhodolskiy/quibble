@@ -34,6 +34,7 @@ var field = new Field({
 game.newLoopFromClassObject("Menu", new Menu());
 game.newLoopFromClassObject("Process", new Process());
 game.newLoopFromClassObject("GameOver", new GameOver());
+
 // set starting game class
 //game.setLoop("Process");
 game.setLoop("Menu"); // comment it if you need 
