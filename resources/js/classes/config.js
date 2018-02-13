@@ -33,4 +33,5 @@ var Config = function(){
 	this.startCellGridPos = pjs.vector.point(asu.s(20), asu.s(100));
 	this.lineWidth = asu.s(5);
 	this.lineColor = '#03A9F4';
+	this.minActiveCellCount = 3;
 }

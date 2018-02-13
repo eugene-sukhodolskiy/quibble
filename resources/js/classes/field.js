@@ -164,8 +164,12 @@ var Field = function(params){
 
 		if(self.config.controlType == 'mouse' && self.mouse.isUp("LEFT") || self.config.controlType == 'touch' && self.touch.isUp()){
 			self.touchFlag = false;
-			console.log(self.activeCell);
-			self.removeActivatedCells();
+			// console.log(self.activeCell);
+			if(self.checkActiveCellsOnCorrect()){
+				self.removeActivatedCells();
+			}else{
+				self.activeCell = [];
+			}
 		}
 	}
 
@@ -220,17 +224,27 @@ var Field = function(params){
 		}
 	}
 
-	// this.generateNewCells = function(){
-	// 	for(var i=0; i<self.config.fieldMatrixSize.w; i++){
-	// 		for(var n=0; n<self.config.fieldMatrixSize.h; n++){
-	// 			if(self.matrix[i][n] !== false) continue;
+	this.checkActiveCellsOnCorrect = function(){
+		if(self.activeCell.length < self.config.minActiveCellCount){
+			return false;
+		}
 
-	// 			var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(100, 100));
-	// 			cell.matrixIndex = {"i": i, "n": n};
-	// 			self.matrix[i][n] = cell;
-	// 		}
-	// 	}
-	// }
+		var prevColor = '';
+		for(var i in self.activeCell){
+			if(i == 0){
+				prevColor = self.activeCell[i].fillColor;
+				continue;
+			}
+
+			if(self.activeCell[i].fillColor != prevColor){
+				return false;
+			}
+
+			prevColor = self.activeCell[i].fillColor;
+		}
+
+		return true;
+	}
 
 	this.moveToPoint = function(){
 		for(var i in self.matrix){
