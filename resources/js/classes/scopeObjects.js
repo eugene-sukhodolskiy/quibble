@@ -104,27 +104,14 @@ var ScopeObjects = function(params){
 
 	self.generateMenuItems();
 
-	self.getLine = function(p1, p2){
-		var dist = self.pjs.vector.getDistance(p1, p2);
-		var line = self.pjs.game.newRectObject({
-			fillColor: 'black',
-			w: 5,
-			h: dist
+	self.getSelectedCirc = function(p1){
+		var circ = self.pjs.game.newCircleObject({
+			fillColor: self.config.lineColor,
+			radius: self.config.lineWidth * 1.3,
 		});
 
-		var center = {
-			x: p1.x + Math.abs(p1.x - p2.x),
-			y: p1.y + Math.abs(p1.y - p2.y)
-		}
-
-		line.setPositionC(center);
-
-		var angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
-		angle = angle * 180 / Math.PI;
-
-		line.setAngle(-angle);
-
-		return line;
+		circ.setPositionC(p1);
+		return circ;
 	}
 
 }

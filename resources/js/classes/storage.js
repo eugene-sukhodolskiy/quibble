@@ -17,8 +17,7 @@ var Storage = function(params){
 		console.log("matrix loading... done!");
 		//field.matrix = []; // ?
 		//field.matrix = JSON.parse(localStorage.getItem("matrix"));
-		
-		field.objRestore(JSON.parse(localStorage.getItem("matrix")));
+		field.objRestore(localStorage.getItem("matrix"));
 		//field.objRestore(JSON.parse(localStorage.getItem("matrix")));
 
 		//field.matrix = JSON.parse(localStorage.getItem("matrix"), field(params));

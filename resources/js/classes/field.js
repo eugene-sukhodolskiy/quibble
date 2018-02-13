@@ -10,6 +10,7 @@ var Field = function(params){
 	this.gridCell = false;
 	this.touchFlag = false;
 	this.lineArr = [];
+	this.context = self.pjs.system.getContext();
 
 
 	// methods
@@ -25,7 +26,7 @@ var Field = function(params){
 	
 	this.objRestore = function(matrix1){ // sorry I need this func...
 		console.log(matrix1);
-		//self.matrix = matrix1;
+		self.matrix = matrix1;
 	}
 
 	this.getCell = function(color, position){
@@ -74,9 +75,24 @@ var Field = function(params){
 	this.drawTouchLines = function(){
 		if(!self.touchFlag) return false;
 
+		self.context.beginPath();
+        self.context.lineWidth = self.config.lineWidth; // толщина линии
+        self.context.strokeStyle = self.config.lineColor; // цвет линии
+        
+
 		for(var i=0;i<self.activeCell.length - 1; i++){
-			scopeObjects.getLine(self.activeCell[i].getPositionC(), self.activeCell[i+1].getPositionC()).draw();
+			var p1 = self.activeCell[i].getPositionC();
+			var p2 = self.activeCell[i+1].getPositionC();
+			self.context.moveTo(p1.x, p1.y);
+        	self.context.lineTo(p2.x, p2.y);
+			self.context.stroke();
+
 		}
+
+		for(var i=0;i<self.activeCell.length; i++){
+			scopeObjects.getSelectedCirc(self.activeCell[i].getPositionC()).draw();
+		}
+
 	}
 	
 	this.drawBorder = function(){
