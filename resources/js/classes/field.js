@@ -22,6 +22,12 @@ var Field = function(params){
 	 *
 	 * @return {[object]} [circle object]
 	 */
+	
+	this.objRestore = function(matrix1){ // sorry I need this func...
+		console.log(matrix1);
+		//self.matrix = matrix1;
+	}
+
 	this.getCell = function(color, position){
 		var cell = self.pjs.game.newCircleObject({
 			fillColor: color,

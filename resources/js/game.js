@@ -16,7 +16,10 @@ var asu = new AbsoluteSizeUnit(screen, 1.7);
 var config = new Config();
 var settings = new Settings();
 var data = new Data();
-var storage = new Storage();
+var storage = new Storage({
+	// pjs: pjs,
+	// config: config
+});
 var scopeObjects = new ScopeObjects({
 	pjs: pjs,
 	screen: screen,
