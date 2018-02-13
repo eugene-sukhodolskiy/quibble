@@ -11,10 +11,7 @@ var GameOver = function(){
 			game.setLoop('Menu');
 		}
 
-		if(config.debug){
-			scopeObjects.fpsText.text = pjs.system.getFPS() + '';
-			scopeObjects.fpsText.draw();
-		}
+		config.debug ? scopeObjects.fpsText.draw(scopeObjects.fpsText.text = pjs.system.getFPS()) : false;
 	}
 
 	this.exit = function(){
