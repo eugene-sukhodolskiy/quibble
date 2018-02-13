@@ -14,6 +14,12 @@ var ScopeObjects = function(params){
 		size: asu.s(70)
 	});
 
+	this.fpsText = self.pjs.game.newTextObject({
+		font: 'Verdana',
+		color: 'black',
+		size: asu.s(40)
+	})
+
 	this.gameOver = self.pjs.game.newTextObject({
 		text: "Game Over",
 		font: "Verdana",

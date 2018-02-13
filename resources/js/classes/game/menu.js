@@ -17,6 +17,8 @@ var Menu = function(){
 		}
 
 		data.bestScore = storage.bestScoreLoad(); // it needs to be restored here because we will show this on menu screen
+		positioning.posX(scopeObjects.fpsText, 1);
+		positioning.posY(scopeObjects.fpsText, 1);
 	}
 
 	this.update = function(){
@@ -35,6 +37,11 @@ var Menu = function(){
 			scopeObjects.bestScore.text = 'Best: ' + data.bestScore;
 			scopeObjects.bestScore.draw();
 
+			if(config.debug){
+				scopeObjects.fpsText.text = pjs.system.getFPS() + '';
+				scopeObjects.fpsText.draw();
+			}
+
 			self.menuController();
 
 			pjs.OOP.drawArr(scopeObjects.particles);
@@ -42,6 +49,7 @@ var Menu = function(){
 		}else{
 			scopeObjects.gameName.draw();
 		}
+
 	}
 
 	this.exit = function(){

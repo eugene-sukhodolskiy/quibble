@@ -33,6 +33,10 @@ var field = new Field({
 	touch: touch
 });
 
+if(config.debug){
+	pjs.system.initFPSCheck();
+}
+
 // initialization game classes
 game.newLoopFromClassObject("Menu", new Menu());
 game.newLoopFromClassObject("Process", new Process());
