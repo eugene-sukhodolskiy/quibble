@@ -22,7 +22,7 @@ var ScopeObjects = function(params){
 	});
 
 	this.bestScore = self.pjs.game.newTextObject({
-		text: "Best score: " + "result", // where should I get it?
+		//text: "Best score: " + "result", // we write it in menu.js
 		font: "Verdana",
 		color: "#C62828",
 		size: asu.s(10)
@@ -82,12 +82,7 @@ var ScopeObjects = function(params){
 		}
 		for(var i in self.particles){
 			var pos = self.particles[i].getPosition();
-
-			// your code need write to function with name particlesMove or another name
-			// self.particles[i].moveTo({x: self.screen.w, y: self.screen.y, z: 0}, 10);
-			// this line need write in game.js, because now, she init 60 times per second !!!!! I DO IT 
-			// How can I do it? It doesn't want to work like you write... moveTo works only in loop... Or maybe I don't undestend something?
-
+			
 			self.particles[i].moveTo(self.pjs.vector.point(self.moveParticlesArr[i].moveX, self.moveParticlesArr[i].moveY), self.moveParticlesArr[i].speed * self.pjs.game.getDT(20));
 
 			if(pos.x > self.screen.w || pos.x < 0 || pos.y > self.screen.h || pos.y < 0 ){ // del if particle leave game field
@@ -130,5 +125,10 @@ var ScopeObjects = function(params){
 
 	positioning.posX(self.gameScore, 70);
 	positioning.posY(self.gameScore, 5);
+
+	// this.tmpMatrixObj = function(params){
+	// 	giveMeParamsFromObject(this, params);
+	// 	console.log("Success!");
+	// }
 
 }

@@ -2,9 +2,9 @@
 
 var Process = function(){
 	var self = this;
-	this.tmpT = pjs.game.getTime(); //
+	this.tmpT = pjs.game.getTime();
 	this.entry = function(){
-		//storage.matrixLoad();
+
 	}
 
 	this.update = function(){
@@ -22,6 +22,7 @@ var Process = function(){
 			self.tmpT = pjs.game.getTime();
 			// save
 			storage.matrixSave();
+			storage.bestScoreSave();
 		}
 
 	}

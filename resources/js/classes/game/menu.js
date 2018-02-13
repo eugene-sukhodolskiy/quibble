@@ -15,6 +15,8 @@ var Menu = function(){
 			positioning.centerX(scopeObjects[i]);
 			positioning.pos(scopeObjects[i], 'y', counter * 15);
 		}
+
+		data.bestScore = storage.bestScoreLoad(); // it needs to be restored here because we will show this on menu screen
 	}
 
 	this.update = function(){
@@ -55,12 +57,9 @@ var Menu = function(){
 			game.setLoop('Process');
 		},
 		'LoadGame': function(t){
-			// console.log(field.matrix);
-			// storage.matrixLoad();
-			// console.log("!!!!!!!!!!!!!!!!");
-			// console.log(field.matrix);
 			game.setLoop('Process');
-			storage.matrixLoad();
+			field.matrixLoad(storage.matrixLoad());
+			// data.bestScore = storage.bestScoreLoad(); // we loaded it in this.entry()
 		}
 		// load Game
 	}

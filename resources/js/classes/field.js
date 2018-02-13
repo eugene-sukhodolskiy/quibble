@@ -24,9 +24,31 @@ var Field = function(params){
 	 * @return {[object]} [circle object]
 	 */
 	
-	this.objRestore = function(matrix1){ // sorry I need this func...
-		console.log(matrix1);
-		self.matrix = matrix1;
+	this.matrixSave = function(){
+		this.tmpMatrix = [];
+		for(var i in self.matrix){
+			for(var n in self.matrix[i]){
+				if(typeof this.tmpMatrix[i] == 'undefined'){
+					this.tmpMatrix[i] = [];
+				}
+				this.tmpMatrix[i].push({
+					"fillColor": self.matrix[i][n].fillColor, 
+					"id": self.matrix[i][n].id, 
+					"matrixIndex": self.matrix[i][n].matrixIndex
+				})
+			}
+		}
+		return this.tmpMatrix;
+	}
+
+	this.matrixLoad = function(matrixLoadObj){ 
+		for(var i in self.matrix){
+			for(var n in self.matrix[i]){
+				self.matrix[i][n].fillColor =  matrixLoadObj[i][n].fillColor;
+				self.matrix[i][n].id = matrixLoadObj[i][n].id;
+				self.matrix[i][n].matrixIndex = matrixLoadObj[i][n].matrixIndex;
+			}
+		}
 	}
 
 	this.getCell = function(color, position){
