@@ -3,8 +3,6 @@ var GameOver = function(){
 		positioning.centerXY(scopeObjects.gameOver);
 		data.gameoverState = true;
 
-		positioning.posX(scopeObjects.fpsText, 1);
-		positioning.posY(scopeObjects.fpsText, 1);
 	}
 
 	this.update = function(){

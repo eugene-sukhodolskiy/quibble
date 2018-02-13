@@ -4,8 +4,7 @@ var Process = function(){
 	var self = this;
 	this.tmpT = pjs.game.getTime();
 	this.entry = function(){
-		positioning.posX(scopeObjects.fpsText, 1);
-		positioning.posY(scopeObjects.fpsText, 1);
+
 	}
 
 	this.update = function(){
