@@ -178,6 +178,10 @@ var Field = function(params){
 
 				if(self.matrix[i][n].isStaticIntersect(box)){
 					if(!self.checkCellOnActive(self.matrix[i][n])){
+						var len = self.activeCell.length;
+						if(len != 0 && (Math.abs(self.activeCell[len-1].matrixIndex.i - i) > 1 || Math.abs(self.activeCell[len-1].matrixIndex.n - n) > 1)){
+							return false;
+						}
 						self.activeCell.push(self.matrix[i][n]);
 					}
 					return true;
@@ -265,6 +269,10 @@ var Field = function(params){
 			}
 
 			if(self.activeCell[i].fillColor != prevColor){
+				return false;
+			}
+
+			if(i && (Math.abs(self.activeCell[i].matrixIndex.i - self.activeCell[i-1].matrixIndex.i) > 1 || Math.abs(self.activeCell[i].matrixIndex.n - self.activeCell[i-1].matrixIndex.n) > 1)){
 				return false;
 			}
 
