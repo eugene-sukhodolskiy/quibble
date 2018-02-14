@@ -9,6 +9,12 @@ var Config = function(){
 		"ExitGame": "Exit"
 	};
 
+	this.gameSettings = {
+		"SoundGame": "Sound",
+		"MusicGame": "Music",
+		"BackToGameMenu": "Back to menu"
+	};
+
 	this.fieldMatrixSize = {
 		w: 3,
 		h: 3
@@ -27,7 +33,7 @@ var Config = function(){
 	 // this.fieldCellSize = s(asu.s(42), asu.s(35));
 
 	this.particles = {
-		amount: 80,
+		amount: 80, // 80
 		size: asu.s(1),
 		color: 'blue',
 		minSpeed: 1, // particles movement speed

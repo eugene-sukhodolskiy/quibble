@@ -3,6 +3,7 @@ var Data = function(){
 	this.currentScore = 0;
 	this.bestScore = 0;
 	this.gameoverState = false;
+	this.musicState = true;
 
 	this.scorePlus = function(plus){
 		self.currentScore += plus;
@@ -10,4 +11,6 @@ var Data = function(){
 			self.bestScore = self.currentScore;
 		}
 	}
+
+	this.audio = document.getElementById('audio');
 }

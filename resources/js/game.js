@@ -14,7 +14,7 @@ var touch = pjs.touchControl.initTouchControl();
 var positioning = new SetObjectPosition(screen);
 var asu = new AbsoluteSizeUnit(screen, 1.7);
 var config = new Config();
-var settings = new Settings();
+//var settings = new Settings();
 var data = new Data();
 var storage = new Storage({
 	// pjs: pjs,
@@ -41,6 +41,7 @@ if(config.debug){
 game.newLoopFromClassObject("Menu", new Menu());
 game.newLoopFromClassObject("Process", new Process());
 game.newLoopFromClassObject("GameOver", new GameOver());
+game.newLoopFromClassObject("Settings", new Settings());
 
 // set starting game class
 //game.setLoop("Process");
