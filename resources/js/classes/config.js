@@ -34,8 +34,8 @@ var Config = function(){
 
 	this.particles = {
 		amount: 80, // 80
-		size: asu.s(1),
-		color: 'blue',
+		size: asu.s(1.5),
+		color: 'grey',
 		minSpeed: 1, // particles movement speed
 		maxSpeed: 5,
 

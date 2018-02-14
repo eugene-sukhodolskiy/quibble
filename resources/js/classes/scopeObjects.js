@@ -113,12 +113,13 @@ var ScopeObjects = function(params){
 		var particle = {
 			x: self.pjs.math.random(0, self.screen.w),
 			y: self.pjs.math.random(0, self.screen.h),
-			w: asu.s(self.config.particles.size),
-			h: asu.s(self.config.particles.size),
+			// w: self.config.particles.size,
+			// h: self.config.particles.size,
+			radius: self.config.particles.size,
 			fillColor: self.config.particles.color
 		};
 
-		return self.pjs.game.newRectObject(particle);
+		return self.pjs.game.newCircleObject(particle);
 	}
 
 	self.generateMenuItems();
