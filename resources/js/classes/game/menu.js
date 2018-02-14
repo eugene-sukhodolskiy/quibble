@@ -30,6 +30,8 @@ var Menu = function(){
 		}, 2500);
 		
 		if(self.flag){
+			pjs.OOP.drawArr(scopeObjects.particles);
+			
 			for(var i in config.gameMenu){
 				scopeObjects[i].draw(); //
 			}
@@ -40,8 +42,6 @@ var Menu = function(){
 			config.debug ? scopeObjects.fpsText.draw(scopeObjects.fpsText.text = pjs.system.getFPS()) : false;
 
 			self.menuController();
-
-			pjs.OOP.drawArr(scopeObjects.particles);
 
 		}else{
 			scopeObjects.gameName.draw();
