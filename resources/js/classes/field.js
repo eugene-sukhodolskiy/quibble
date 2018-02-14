@@ -286,7 +286,8 @@ var Field = function(params){
 	}
 
 	this.scoreCounter = function(){
-		data.scorePlus(self.activeCell.length);
+		var points = Math.pow(2, self.activeCell.length) / 2;
+		data.scorePlus(points);
 	}
 
 	this.moveBack = function(){
