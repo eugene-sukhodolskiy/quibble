@@ -17,6 +17,21 @@ var Menu = function(){
 		}
 
 		data.bestScore = storage.bestScoreLoad(); // it needs to be restored here because we will show this on menu screen
+		data.musicState = storage.musicStateLoad();
+
+
+		if(data.musicState){ // audio init
+			data.audio.play();
+			data.audio.loop = true;
+		}
+
+		if(!data.musicState){
+			data.audio.pause();
+		}
+	
+		// data.audio.pause(); // loop
+
+
 		positioning.posX(scopeObjects.fpsText, 1);
 		positioning.posY(scopeObjects.fpsText, 1);
 	}
@@ -65,6 +80,10 @@ var Menu = function(){
 			game.setLoop('Process');
 			field.matrixLoad(storage.matrixLoad());
 			// data.bestScore = storage.bestScoreLoad(); // we loaded it in this.entry()
+		},
+		'SettingsGame': function(t){
+			game.setLoop('Settings');
+			// console.log("123");
 		}
 		// load Game
 	}

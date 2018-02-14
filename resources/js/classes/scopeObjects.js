@@ -45,6 +45,17 @@ var ScopeObjects = function(params){
 		}
 	}
 
+	this.generateSettingsItems = function(){
+		for(var i in self.config.gameSettings){
+			self[i] = self.pjs.game.newTextObject({
+				text: self.config.gameSettings[i],
+				font: "Verdana",
+				color: "#C62828",
+				size: asu.s(30)
+			});
+		}
+	}
+
 	this.particles = []; // частици
 	this.moveParticlesArr = []; // moveTo() array
 	for(let i = 0; i < self.config.particles.amount; i++){
@@ -111,6 +122,7 @@ var ScopeObjects = function(params){
 	}
 
 	self.generateMenuItems();
+	self.generateSettingsItems();
 
 	self.getSelectedCirc = function(p1){
 		var circ = self.pjs.game.newCircleObject({
