@@ -11,6 +11,7 @@ var Field = function(params){
 	this.touchFlag = false;
 	this.lineArr = [];
 	this.context = self.pjs.system.getContext();
+	this.idCurrentCellWithMouse = false;
 
 
 	// methods
@@ -177,6 +178,8 @@ var Field = function(params){
 				}
 
 				if(self.matrix[i][n].isStaticIntersect(box)){
+					self.idCurrentCellWithMouse = self.matrix[i][n].id;
+					self.moveBack();
 					if(!self.checkCellOnActive(self.matrix[i][n])){
 						var len = self.activeCell.length;
 						if(len != 0 && (Math.abs(self.activeCell[len-1].matrixIndex.i - i) > 1 || Math.abs(self.activeCell[len-1].matrixIndex.n - n) > 1)){
@@ -284,6 +287,12 @@ var Field = function(params){
 
 	this.scoreCounter = function(){
 		data.scorePlus(self.activeCell.length);
+	}
+
+	this.moveBack = function(){
+		if(self.activeCell.length > 1 && self.activeCell[self.activeCell.length - 2].id == self.idCurrentCellWithMouse){
+			self.activeCell.splice(self.activeCell.length - 1, 1);
+		}
 	}
 
 	this.moveToPoint = function(){
