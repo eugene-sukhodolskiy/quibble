@@ -31,13 +31,19 @@ var Storage = function(params){
 		return this.restoredBestScore;
 	}
 
-	this.musicStateSave = function(){
+	this.settingsStateSave = function(){ // old musicStateSave
+		this.serialObj = JSON.stringify(data.soundState); 
+		localStorage.setItem("soundState", this.serialObj);
+
 		this.serialObj = JSON.stringify(data.musicState); 
 		localStorage.setItem("musicState", this.serialObj);
 	}
 
-	this.musicStateLoad = function(){
-		this.restoredMusicState = JSON.parse(localStorage.getItem("musicState"));
+	this.settingsStateLoad = function(){ // old musicStateLoad
+		this.restoredMusicState = {
+			'soundState': JSON.parse(localStorage.getItem("soundState")),
+			'musicState': JSON.parse(localStorage.getItem("musicState"))
+		};
 		return this.restoredMusicState;
 	}
 

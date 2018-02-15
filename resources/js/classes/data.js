@@ -3,6 +3,7 @@ var Data = function(){
 	this.currentScore = 0;
 	this.bestScore = 0;
 	this.gameoverState = false;
+	this.soundState = true; // don't forget to add sound :)
 	this.musicState = true;
 
 	this.scorePlus = function(plus){

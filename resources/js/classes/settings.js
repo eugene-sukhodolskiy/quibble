@@ -21,9 +21,17 @@ var Settings = function(){
 		for(var i in config.gameSettings){
 			//console.log(i);
 			 if(!data.musicState && i == "MusicGame"){ // something like this for SoundGame
-			 	scopeObjects[i].color = "black";
-			}else{
-				scopeObjects[i].color = "#C62828"; // change it to more appropriate approach
+			 	//scopeObjects[i].color = "black";
+			 	scopeObjects[i].text = 'Music: ' + 'Off';
+			}else if(data.musicState && i == "MusicGame"){
+				//scopeObjects[i].color = "#C62828"; // change it to more appropriate approach
+				//scopeObjects[i].color = "green";
+				scopeObjects[i].text =  'Music: ' + 'On';
+			}else if(!data.soundState && i == "SoundGame"){
+				//scopeObjects[i].color = "#C62828"; // change it to more appropriate approach
+				scopeObjects[i].text =  'Sound: ' + 'Off';
+			}else if(data.soundState && i == "SoundGame"){
+				scopeObjects[i].text =  'Sound: ' + 'On';
 			}
 
 			scopeObjects[i].draw(); 
@@ -38,7 +46,7 @@ var Settings = function(){
 		if(pjs.game.getTime() - self.tmpT > 100){
 			self.tmpT = pjs.game.getTime();
 			// save
-			storage.musicStateSave();
+			storage.settingsStateSave(); // saving of settings
 		}
 	}
 
@@ -48,16 +56,19 @@ var Settings = function(){
 
 
 	this.controlCallback = {
-		'SoundGame': function(t){ // add code
-			// if(data.gameoverState == true){
-			// 	data.gameoverState = false;
-			// 	field.resetMatrix();
-			// }
-			//game.setLoop('Process');
+		'SoundGame': function(t){
+			data.soundState = !data.soundState;
+			// sound ON / OFF
+			if(!data.musicState){
+				//put call of sound func here off
+				//data.audio.pause();
+			}else{
+				//data.audio.play();
+				////put call of sound func here on
+			}
 		},
 		'MusicGame': function(t){
 			data.musicState = !data.musicState;
-
 			// music ON / OFF
 			if(!data.musicState){
 				data.audio.pause();

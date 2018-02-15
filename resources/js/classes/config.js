@@ -10,8 +10,8 @@ var Config = function(){
 	};
 
 	this.gameSettings = {
-		"SoundGame": "Sound",
-		"MusicGame": "Music",
+		"SoundGame": "Sound: On",
+		"MusicGame": "Music: On",
 		"BackToGameMenu": "Back to menu"
 	};
 

@@ -17,16 +17,24 @@ var Menu = function(){
 		}
 
 		data.bestScore = storage.bestScoreLoad(); // it needs to be restored here because we will show this on menu screen
-		data.musicState = storage.musicStateLoad();
+
+		//data.musicState = storage.musicStateLoad();
+		var settingsStateLoad = storage.settingsStateLoad();
+		data.soundState = settingsStateLoad.soundState;
+		data.musicState = settingsStateLoad.musicState;
+		
 
 
 		if(data.musicState){ // audio init
 			data.audio.play();
 			data.audio.loop = true;
-		}
-
-		if(!data.musicState){
+		}else if(!data.musicState){
 			data.audio.pause();
+		}else if(data.soundcState){
+			// data.audio.play();
+			// data.audio.loop = true;
+		}else if(!data.soundState){
+			// data.audio.pause();
 		}
 	
 		// data.audio.pause(); // loop
