@@ -59,13 +59,13 @@ var Settings = function(){
 		'SoundGame': function(t){
 			data.soundState = !data.soundState;
 			// sound ON / OFF
-			if(!data.musicState){
-				//put call of sound func here off
-				//data.audio.pause();
-			}else{
-				//data.audio.play();
-				////put call of sound func here on
-			}
+			// if(!data.soundState){
+			// 	//put call of sound func here off
+			// 	//data.audio.pause();
+			// }else{
+			// 	//data.audio.play();
+			// 	////put call of sound func here on
+			// }
 		},
 		'MusicGame': function(t){
 			data.musicState = !data.musicState;

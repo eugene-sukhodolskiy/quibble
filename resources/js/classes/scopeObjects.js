@@ -156,6 +156,8 @@ var ScopeObjects = function(params){
 		font: 'Indie Flower'
 	});
 
+	this.deleteObjSound = self.pjs.audio.newAudio('resources/media/metal-short-hit-dampened.mp3', .6);
+	
 	positioning.posX(self.gameScore, 55);
 	positioning.posY(self.gameScore, 5);
 
@@ -165,5 +167,13 @@ var ScopeObjects = function(params){
 		w: self.screen.w,
 		h: self.screen.h
 	});
+
+	this.menuIco = game.newImageObject({ 
+     file : "resources/media/menu-icon.png", 
+     x : 0, 
+     y : 0, 
+     w : asu.s(30)
+    // scale : 0.2
+   });
 
 }
