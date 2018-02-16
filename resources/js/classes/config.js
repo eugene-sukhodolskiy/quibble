@@ -16,8 +16,8 @@ var Config = function(){
 	};
 
 	this.fieldMatrixSize = {
-		w: 5,
-		h: 5
+		w: 6,
+		h: 11
 	};
 	
 	// this.fieldMatrixSize = {
@@ -27,9 +27,9 @@ var Config = function(){
 
 	this.circleColors = ['#C62828', '#AD1457', '#6A1B9A', '#1565C0', '#00695C', '#2E7D32', '#9E9D24', '#FDD835', '#E65100', '#4E342E'];
 
-	this.circleRadius = asu.s(10);
+	this.circleRadius = asu.s(15);
 	// this.circleRadius = asu.s(14);
-	this.fieldCellSize = s(asu.s(28), asu.s(28));
+	this.fieldCellSize = s(asu.s(45), asu.s(41));
 	 // this.fieldCellSize = s(asu.s(42), asu.s(35));
 
 	this.particles = {
@@ -43,7 +43,7 @@ var Config = function(){
 
 	this.controlType = 'mouse'; // mouse or touch
 	this.moveCellSpeed = .1;
-	this.startCellGridPos = pjs.vector.point(asu.s(20), asu.s(100));
+	this.startCellGridPos = pjs.vector.point(asu.s(35), asu.s(100));
 	this.lineWidth = asu.s(5);
 	this.lineColor = '#03A9F4';
 	this.minActiveCellCount = 2;

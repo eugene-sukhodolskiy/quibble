@@ -31,7 +31,7 @@ var ScopeObjects = function(params){
 		//text: "Best score: " + "result", // we write it in menu.js
 		font: "Indie Flower",
 		color: "white",
-		size: asu.s(10)
+		size: asu.s(20)
 	});
 
 	this.generateMenuItems = function(){
@@ -150,11 +150,14 @@ var ScopeObjects = function(params){
 	}
 
 	this.gameScore = self.pjs.game.newTextObject({
-		size: asu.s(16),
+		size: asu.s(21),
 		text: 'Score: ' + data.currentScore,
 		color: '#C62828',
 		font: 'Indie Flower'
 	});
+
+	positioning.posX(self.gameScore, 55);
+	positioning.posY(self.gameScore, 5);
 
 	this.gameFieldBackground = self.pjs.game.newRectObject({
 		fillColor: '#FAFAFA',
@@ -162,8 +165,5 @@ var ScopeObjects = function(params){
 		w: self.screen.w,
 		h: self.screen.h
 	});
-
-	positioning.posX(self.gameScore, 70);
-	positioning.posY(self.gameScore, 5);
 
 }
