@@ -208,6 +208,9 @@ var Field = function(params){
 	}
 
 	this.removeActivatedCells = function(){
+		if(data.soundState){
+			scopeObjects.deleteObjSound.play(); // sound
+		}
 		for(var i in self.activeCell){
 			self.matrix[self.activeCell[i].matrixIndex.i][self.activeCell[i].matrixIndex.n].setVisible(false);
 		}

@@ -156,6 +156,8 @@ var ScopeObjects = function(params){
 		font: 'Indie Flower'
 	});
 
+	this.deleteObjSound = self.pjs.audio.newAudio('resources/media/metal-short-hit-dampened.mp3', .6);
+	
 	positioning.posX(self.gameScore, 55);
 	positioning.posY(self.gameScore, 5);
 
