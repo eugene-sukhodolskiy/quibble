@@ -9,28 +9,28 @@ var ScopeObjects = function(params){
 
 	this.gameName = self.pjs.game.newTextObject({
 		text: config.gameName,
-		font: "Verdana",
-		color: "#C62828",
+		font: "Indie Flower",
+		color: "white",
 		size: asu.s(70)
 	});
 
 	this.fpsText = self.pjs.game.newTextObject({
-		font: 'Verdana',
-		color: 'black',
+		font: 'Indie Flower',
+		color: 'red',
 		size: asu.s(40)
 	})
 
 	this.gameOver = self.pjs.game.newTextObject({
 		text: "Game Over",
-		font: "Verdana",
-		color: "#C62828",
+		font: "Indie Flower",
+		color: "white",
 		size: asu.s(30)
 	});
 
 	this.bestScore = self.pjs.game.newTextObject({
 		//text: "Best score: " + "result", // we write it in menu.js
-		font: "Verdana",
-		color: "#C62828",
+		font: "Indie Flower",
+		color: "white",
 		size: asu.s(10)
 	});
 
@@ -38,10 +38,17 @@ var ScopeObjects = function(params){
 		for(var i in self.config.gameMenu){
 			self[i] = self.pjs.game.newTextObject({
 				text: self.config.gameMenu[i],
-				font: "Verdana",
-				color: "#C62828",
-				size: asu.s(30)
+				font: "Indie Flower",
+				color: "white",
+				size: asu.s(42)
 			});
+
+			self[i].setShadow(   { 
+			     shadowColor : "#37474F", 
+			     shadowBlur : asu.s(5), 
+			     shadowX : 0, 
+			     shadowY : 0
+			   });
 		}
 	}
 
@@ -49,10 +56,16 @@ var ScopeObjects = function(params){
 		for(var i in self.config.gameSettings){
 			self[i] = self.pjs.game.newTextObject({
 				text: self.config.gameSettings[i],
-				font: "Verdana",
-				color: "#C62828",
-				size: asu.s(30)
+				font: "Indie Flower",
+				color: "white",
+				size: asu.s(42)
 			});
+			self[i].setShadow(   { 
+			     shadowColor : "#37474F", 
+			     shadowBlur : asu.s(5), 
+			     shadowX : 0, 
+			     shadowY : 0
+			   });
 		}
 	}
 
@@ -80,10 +93,10 @@ var ScopeObjects = function(params){
 			break;
 			case 3:
 				self.moveParticlesArr[i].moveX = self.pjs.math.random(0, self.screen.w);
-				self.moveParticlesArr[i].moveY = self.screen.h + 1;;
+				self.moveParticlesArr[i].moveY = self.screen.h + 1;
 			break;
 		}
-		self.moveParticlesArr[i].speed = self.pjs.math.random(self.config.particles.minSpeed, self.config.particles.maxSpeed);
+		self.moveParticlesArr[i].speed = getRandomArbitrary(self.config.particles.minSpeed, self.config.particles.maxSpeed);
 	}
 
 	this.generateAnimateParticles = function(){
@@ -110,13 +123,14 @@ var ScopeObjects = function(params){
 	}
 
 	this.getParticle = function(){
+		var rad = getRandomArbitrary(self.config.particles.size, self.config.particles.size * 10);
 		var particle = {
 			x: self.pjs.math.random(0, self.screen.w),
 			y: self.pjs.math.random(0, self.screen.h),
 			// w: self.config.particles.size,
 			// h: self.config.particles.size,
-			radius: self.config.particles.size,
-			fillColor: self.config.particles.color
+			radius: rad,
+			fillColor: self.config.circleColors[self.pjs.math.random(0, self.config.circleColors.length - 1)]//self.config.particles.color
 		};
 
 		return self.pjs.game.newCircleObject(particle);
@@ -139,7 +153,14 @@ var ScopeObjects = function(params){
 		size: asu.s(16),
 		text: 'Score: ' + data.currentScore,
 		color: '#C62828',
-		font: 'Verdana'
+		font: 'Indie Flower'
+	});
+
+	this.gameFieldBackground = self.pjs.game.newRectObject({
+		fillColor: '#FAFAFA',
+		x: 0, y: 0,
+		w: self.screen.w,
+		h: self.screen.h
 	});
 
 	positioning.posX(self.gameScore, 70);

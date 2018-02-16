@@ -1,6 +1,6 @@
 // in this file must be exist only base initialization game
 
-var pjs = new PointJS(640, 480, {backgroundColor : "#EEEEEE"});
+var pjs = new PointJS(640, 480, {backgroundColor : "#B0BEC5"});
 pjs.system.initFullPage();
 var game = pjs.game;
 var p = pjs.vector.point;

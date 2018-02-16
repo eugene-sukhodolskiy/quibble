@@ -25,7 +25,7 @@ var Config = function(){
 	// 	h: 12
 	// };
 
-	this.circleColors = ['red', 'blue', 'yellow', 'green', 'grey', 'black', 'orange', 'pink'];
+	this.circleColors = ['#C62828', '#AD1457', '#6A1B9A', '#1565C0', '#00695C', '#2E7D32', '#9E9D24', '#FDD835', '#E65100', '#4E342E'];
 
 	this.circleRadius = asu.s(10);
 	// this.circleRadius = asu.s(14);
@@ -35,9 +35,9 @@ var Config = function(){
 	this.particles = {
 		amount: 80, // 80
 		size: asu.s(1.5),
-		color: 'grey',
-		minSpeed: 1, // particles movement speed
-		maxSpeed: 5,
+		color: '#C62828',
+		minSpeed: asu.s(.1), // particles movement speed
+		maxSpeed: asu.s(2),
 
 	};
 

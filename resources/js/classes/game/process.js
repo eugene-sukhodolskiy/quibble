@@ -8,6 +8,7 @@ var Process = function(){
 	}
 
 	this.update = function(){
+		scopeObjects.gameFieldBackground.draw();
 		if(field.checkOnGameOver()){
 			game.setLoop('GameOver');
 		}

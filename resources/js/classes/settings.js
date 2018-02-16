@@ -18,6 +18,8 @@ var Settings = function(){
 
 		scopeObjects.monitorParticles();
 
+		pjs.OOP.drawArr(scopeObjects.particles);
+
 		for(var i in config.gameSettings){
 			//console.log(i);
 			 if(!data.musicState && i == "MusicGame"){ // something like this for SoundGame
@@ -40,8 +42,6 @@ var Settings = function(){
 		config.debug ? scopeObjects.fpsText.draw(scopeObjects.fpsText.text = pjs.system.getFPS()) : false;
 
 		self.menuController();
-
-		pjs.OOP.drawArr(scopeObjects.particles);
 
 		if(pjs.game.getTime() - self.tmpT > 100){
 			self.tmpT = pjs.game.getTime();
