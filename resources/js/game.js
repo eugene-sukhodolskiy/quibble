@@ -9,6 +9,9 @@ var screen = game.getWH();
 var mouse = pjs.mouseControl.initMouseControl();
 var touch = pjs.touchControl.initTouchControl();
 
+// Oleh want to see this code.
+// var music = new Audio('resources/media/Clouds.mp3');
+// music.play();
 
 // creating objects
 var positioning = new SetObjectPosition(screen);

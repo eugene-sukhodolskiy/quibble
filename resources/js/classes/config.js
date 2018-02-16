@@ -25,7 +25,7 @@ var Config = function(){
 	// 	h: 12
 	// };
 
-	this.circleColors = ['#C62828', '#AD1457', '#6A1B9A', '#1565C0', '#00695C', '#2E7D32', '#9E9D24', '#FDD835', '#E65100', '#4E342E'];
+	this.circleColors = ['#F44336', '#E91E63', '#42A5F5', '#880E4F', '#9C27B0', '#B388FF']; // '#9E9D24', '#FDD835', '#E65100', '#4E342E'
 
 	this.circleRadius = asu.s(15);
 	// this.circleRadius = asu.s(14);
