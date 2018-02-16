@@ -4,7 +4,7 @@ var Process = function(){
 	var self = this;
 	this.tmpT = pjs.game.getTime();
 	this.entry = function(){
-		positioning.posX(scopeObjects.menuIco, 90);
+		positioning.posX(scopeObjects.menuIco, 83.5);
 		positioning.posY(scopeObjects.menuIco, 5);
 		scopeObjects.menuIco.setShadow({ 
 		     shadowColor : "#235e7b", 
