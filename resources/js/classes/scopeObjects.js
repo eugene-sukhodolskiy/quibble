@@ -123,7 +123,7 @@ var ScopeObjects = function(params){
 	}
 
 	this.getParticle = function(){
-		var rad = getRandomArbitrary(self.config.particles.size, self.config.particles.size * 10);
+		var rad = getRandomArbitrary(self.config.particles.minSize, self.config.particles.maxSize);
 		var particle = {
 			x: self.pjs.math.random(0, self.screen.w),
 			y: self.pjs.math.random(0, self.screen.h),

@@ -300,9 +300,14 @@ var Field = function(params){
 		for(var i in self.matrix){
 			for(var n in self.matrix[i]){
 				if(typeof self.matrix[i][n].moveToPoint != 'undefined' && self.matrix[i][n].moveToPoint != false && self.matrix[i][n].moveToPoint.y != self.matrix[i][n].y){
-					self.matrix[i][n].moveToC(self.matrix[i][n].moveToPoint, self.config.moveCellSpeed * self.pjs.game.getDT(.5));
+					var dist = self.matrix[i][n].getDistance(self.matrix[i][n].moveToPoint);
+					if(dist > asu.s(10)){
+						self.matrix[i][n].moveToC(self.matrix[i][n].moveToPoint, self.config.moveCellSpeed * self.pjs.game.getDT(.5));
+					}else{
+						self.matrix[i][n].moveToC(self.matrix[i][n].moveToPoint, self.config.moveCellSpeed / 6 * self.pjs.game.getDT(1));
+					}
 					var center = self.matrix[i][n].getPositionC();
-					if(Math.abs(center.y - self.matrix[i][n].moveToPoint.y) < 2){
+					if(Math.abs(center.y - self.matrix[i][n].moveToPoint.y) < 0.5){
 						self.matrix[i][n].moveToPoint = false;
 					}
 				}

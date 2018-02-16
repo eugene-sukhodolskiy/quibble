@@ -33,8 +33,9 @@ var Config = function(){
 	 // this.fieldCellSize = s(asu.s(42), asu.s(35));
 
 	this.particles = {
-		amount: 80, // 80
-		size: asu.s(1.5),
+		amount: 50, // 80
+		minSize: asu.s(3),
+		maxSize: asu.s(60),
 		color: '#C62828',
 		minSpeed: asu.s(.1), // particles movement speed
 		maxSpeed: asu.s(2),
