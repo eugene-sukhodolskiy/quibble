@@ -92,6 +92,9 @@ var Menu = function(){
 		'SettingsGame': function(t){
 			game.setLoop('Settings');
 			// console.log("123");
+		},
+		'ExitGame': function(t){
+			window.close();
 		}
 		// load Game
 	}

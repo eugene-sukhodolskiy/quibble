@@ -48,5 +48,5 @@ var Config = function(){
 	this.lineWidth = asu.s(5);
 	this.lineColor = '#03A9F4';
 	this.minActiveCellCount = 2;
-	this.debug = true;
+	this.debug = false; // true - show current fps 
 }

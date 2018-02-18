@@ -4,14 +4,14 @@ var Process = function(){
 	var self = this;
 	this.tmpT = pjs.game.getTime();
 	this.entry = function(){
-		positioning.posX(scopeObjects.menuIco, 83.5);
+		positioning.posX(scopeObjects.menuIco, 6.5);
 		positioning.posY(scopeObjects.menuIco, 5);
-		scopeObjects.menuIco.setShadow({ 
-		     shadowColor : "#235e7b", 
-		     shadowBlur : 20
-		     // shadowX : 5, 
-		     // shadowY : 5 
-	   });
+		// scopeObjects.menuIco.setShadow({ 
+		//      shadowColor : "#235e7b", 
+		//      shadowBlur : 20
+		//      // shadowX : 5, 
+		//      // shadowY : 5 
+	 //   });
 	}
 
 	this.update = function(){

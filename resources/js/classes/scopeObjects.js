@@ -77,23 +77,24 @@ var ScopeObjects = function(params){
 	//
 	this.particlesMoveTo = function(i){
 		//console.log(i);
+		var particlesMaxDiametr = config.particles.maxSize * 2;
 		switch(self.pjs.math.random(0, 3)){
 			// u can use self.pjs.vector.point(x, y); instead {x: 1, y: 1, z: 0} // thx
 			case 0:
-				self.moveParticlesArr[i].moveX = -1;
+				self.moveParticlesArr[i].moveX = -1 * particlesMaxDiametr -1; // -1 for small particles (or if u want to del particle when it reach screen corner)
 				self.moveParticlesArr[i].moveY = self.pjs.math.random(0, self.screen.h);
 			break;
 			case 1:
 				self.moveParticlesArr[i].moveX = self.pjs.math.random(0, self.screen.w);
-				self.moveParticlesArr[i].moveY = -1;
+				self.moveParticlesArr[i].moveY = -1 * particlesMaxDiametr -1; // -1 for small particles
 			break;
 			case 2:
-				self.moveParticlesArr[i].moveX = self.screen.w + 1;
+				self.moveParticlesArr[i].moveX = self.screen.w + 1 + particlesMaxDiametr;
 				self.moveParticlesArr[i].moveY = self.pjs.math.random(0, self.screen.h);
 			break;
 			case 3:
 				self.moveParticlesArr[i].moveX = self.pjs.math.random(0, self.screen.w);
-				self.moveParticlesArr[i].moveY = self.screen.h + 1;
+				self.moveParticlesArr[i].moveY = self.screen.h + 1 + particlesMaxDiametr;
 			break;
 		}
 		self.moveParticlesArr[i].speed = getRandomArbitrary(self.config.particles.minSpeed, self.config.particles.maxSpeed);
@@ -107,6 +108,7 @@ var ScopeObjects = function(params){
 	}
 
 	this.monitorParticles = function(){
+		var particlesMaxDiametr = config.particles.maxSize * 2;
 		if(self.particles.length == 0){
 			self.generateAnimateParticles();
 		}
@@ -115,7 +117,8 @@ var ScopeObjects = function(params){
 			
 			self.particles[i].moveTo(self.pjs.vector.point(self.moveParticlesArr[i].moveX, self.moveParticlesArr[i].moveY), self.moveParticlesArr[i].speed * self.pjs.game.getDT(20));
 
-			if(pos.x > self.screen.w || pos.x < 0 || pos.y > self.screen.h || pos.y < 0 ){ // del if particle leave game field
+			if(pos.x > self.screen.w + particlesMaxDiametr || pos.x < 0 - particlesMaxDiametr ||
+				pos.y > self.screen.h + particlesMaxDiametr || pos.y < 0 - particlesMaxDiametr){ // del if particle leave game field
 				self.particles.splice(i, 1, self.getParticle());
 				self.particlesMoveTo(i); //
 			}
@@ -124,9 +127,33 @@ var ScopeObjects = function(params){
 
 	this.getParticle = function(){
 		var rad = getRandomArbitrary(self.config.particles.minSize, self.config.particles.maxSize);
+		var randX = 0;
+		var randY = 0;
+		var particlesMaxDiametr = config.particles.maxSize * 2;
+		switch(self.pjs.math.random(0, 3)){
+			case 0:
+				randX = -1 * particlesMaxDiametr + 1; // -1 for small particles (or if u want to del particle when it reach screen corner)
+				randY = self.pjs.math.random(0, self.screen.h);
+			break;
+			case 1:
+				randX = self.pjs.math.random(0, self.screen.w);
+				randY = -1 * particlesMaxDiametr + 1; // -1 for small particles
+			break;
+			case 2:
+				randX = self.screen.w - 2 + particlesMaxDiametr;
+				randY = self.pjs.math.random(0, self.screen.h);
+			break;
+			case 3:
+				randX = self.pjs.math.random(0, self.screen.w);
+				randY = self.screen.h - 2 + particlesMaxDiametr;
+			break;
+		}
+		// var tmpRand3 = self.pjs.math.random(0, 1);
 		var particle = {
-			x: self.pjs.math.random(0, self.screen.w),
-			y: self.pjs.math.random(0, self.screen.h),
+			// x: self.pjs.math.random(0, self.screen.w),
+			// y: self.pjs.math.random(0, self.screen.h),
+			x: randX,
+			y: randY,
 			// w: self.config.particles.size,
 			// h: self.config.particles.size,
 			radius: rad,
@@ -158,8 +185,8 @@ var ScopeObjects = function(params){
 
 	this.deleteObjSound = self.pjs.audio.newAudio('resources/media/metal-short-hit-dampened.mp3', .6);
 	
-	positioning.posX(self.gameScore, 55);
-	positioning.posY(self.gameScore, 5);
+	positioning.posX(self.gameScore, 40);
+	positioning.posY(self.gameScore, 5.5);
 
 	this.gameFieldBackground = self.pjs.game.newRectObject({
 		fillColor: '#FAFAFA',
