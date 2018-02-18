@@ -132,12 +132,12 @@ var ScopeObjects = function(params){
 		var particlesMaxDiametr = config.particles.maxSize * 2;
 		switch(self.pjs.math.random(0, 3)){
 			case 0:
-				randX = -1 * particlesMaxDiametr + 1; // -1 for small particles (or if u want to del particle when it reach screen corner)
+				randX = -1 * particlesMaxDiametr + 1;
 				randY = self.pjs.math.random(0, self.screen.h);
 			break;
 			case 1:
 				randX = self.pjs.math.random(0, self.screen.w);
-				randY = -1 * particlesMaxDiametr + 1; // -1 for small particles
+				randY = -1 * particlesMaxDiametr + 1;
 			break;
 			case 2:
 				randX = self.screen.w - 2 + particlesMaxDiametr;

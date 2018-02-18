@@ -304,7 +304,7 @@ var Field = function(params){
 			for(var n in self.matrix[i]){
 				if(typeof self.matrix[i][n].moveToPoint != 'undefined' && self.matrix[i][n].moveToPoint != false && self.matrix[i][n].moveToPoint.y != self.matrix[i][n].y){
 					var dist = self.matrix[i][n].getDistance(self.matrix[i][n].moveToPoint);
-					if(dist > asu.s(10)){
+					if(dist > asu.s(2)){ // 5
 						self.matrix[i][n].moveToC(self.matrix[i][n].moveToPoint, self.config.moveCellSpeed * self.pjs.game.getDT(.5));
 					}else{
 						self.matrix[i][n].moveToC(self.matrix[i][n].moveToPoint, self.config.moveCellSpeed / 6 * self.pjs.game.getDT(1));
