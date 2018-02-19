@@ -20,6 +20,15 @@ var Process = function(){
 
 		positioning.posX(self.cornerCircle, 6.5);
 		positioning.posY(self.cornerCircle, 5);
+		
+
+		positioning.posX(scopeObjects.timeLine, 6.5);
+		positioning.posY(scopeObjects.timeLine, 15);
+		scopeObjects.timeLine.w = screen.w - scopeObjects.timeLine.x * 2; // it makes some gaps in right side (the same as left one)
+		scopeObjects.timeLine.maxW = screen.w - scopeObjects.timeLine.x * 2; 
+
+
+
 	}
 
 	this.update = function(){
@@ -27,6 +36,8 @@ var Process = function(){
 		scopeObjects.gameFieldBackground.draw();
 		self.cornerCircle.draw();
 		scopeObjects.menuIco.draw(); //
+		scopeObjects.timeLine.draw();
+
 
 		if(config.controlType == 'mouse'){
 			var box = mouse.getPosition();
@@ -56,6 +67,17 @@ var Process = function(){
 			// save
 			storage.matrixSave();
 			storage.bestScoreSave();
+			// timeLine decrease
+			// 
+			// next line should moved somewhere because it executes 60 times per second
+			this.timeLineStep = scopeObjects.timeLine.maxW / 5; // 1000 / 2 = 1000 ms
+
+			scopeObjects.timeLine.w = scopeObjects.timeLine.getSize().w - this.timeLineStep; //timeLineStep;
+
+			if(scopeObjects.timeLine.getSize().w <= 0){
+				scopeObjects.timeLine.w = scopeObjects.timeLine.maxW;
+				data.scoreMinus(1); // minus 1 every cycle
+			}
 		}
 
 		config.debug ? scopeObjects.fpsText.draw(scopeObjects.fpsText.text = pjs.system.getFPS()) : false;

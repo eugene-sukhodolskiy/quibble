@@ -26,7 +26,8 @@ var storage = new Storage({
 var scopeObjects = new ScopeObjects({
 	pjs: pjs,
 	screen: screen,
-	config: config
+	config: config,
+	positioning: positioning //
 });
 var field = new Field({
 	pjs: pjs,

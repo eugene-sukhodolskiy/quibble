@@ -13,5 +13,12 @@ var Data = function(){
 		}
 	}
 
+	this.scoreMinus = function(minus){
+		self.currentScore -= minus;
+		if(self.currentScore < 0){
+			self.currentScore = 0;
+		}
+	}
+
 	this.audio = document.getElementById('audio'); // music
 }

@@ -5,6 +5,7 @@ var ScopeObjects = function(params){
 	this.pjs;
 	this.screen;
 	this.config;
+	this.positioning;
 	giveMeParamsFromObject(this, params);
 
 	this.gameName = self.pjs.game.newTextObject({
@@ -201,6 +202,14 @@ var ScopeObjects = function(params){
      y : 0, 
      w : asu.s(30)
     // scale : 0.2
+   });
+
+	this.timeLine = game.newRectObject(   { 
+     //w : self.screen.w, 
+     h : 10, 
+     fillColor : "#64DD17", 
+     maxW : 0 // my param max width (depends on screen resolution)
+     //timerDuration : 5000 // 5 s
    });
 
 }
