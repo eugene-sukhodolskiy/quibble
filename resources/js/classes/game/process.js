@@ -12,12 +12,22 @@ var Process = function(){
 		//      // shadowX : 5, 
 		//      // shadowY : 5 
 	 //   });
+	 
+		self.cornerCircle = pjs.game.newCircleObject({		   
+			fillColor: '#004D40',
+			radius: config.circleRadius
+		});
+
+		positioning.posX(self.cornerCircle, 6.5);
+		positioning.posY(self.cornerCircle, 5);
 	}
 
 	this.update = function(){
 
 		scopeObjects.gameFieldBackground.draw();
+		self.cornerCircle.draw();
 		scopeObjects.menuIco.draw(); //
+
 		if(config.controlType == 'mouse'){
 			var box = mouse.getPosition();
 		}else if(config.controlType == 'touch'){

@@ -27,7 +27,7 @@ var Config = function(){
 
 	this.circleColors = ['#F44336', '#E91E63', '#42A5F5', '#880E4F', '#9C27B0', '#B388FF']; // '#9E9D24', '#FDD835', '#E65100', '#4E342E'
 
-	this.circleRadius = asu.s(15);
+	this.circleRadius = asu.s(15); // 15
 	// this.circleRadius = asu.s(14);
 	this.fieldCellSize = s(asu.s(45), asu.s(41));
 	 // this.fieldCellSize = s(asu.s(42), asu.s(35));
