@@ -62,22 +62,25 @@ var Process = function(){
 		scopeObjects.gameScore.draw();
 		var time = pjs.game.getTime();
 		
+		//timeLine decrease
+		scopeObjects.timeLine.w -= 5; 
+		if(scopeObjects.timeLine.getSize().w <= 0){
+			scopeObjects.timeLine.w = scopeObjects.timeLine.maxW;
+			if(data.currentScore < 500){
+				data.scoreMinus(1); // minus 1 every cycle
+			}else if(data.currentScore < 1000){
+				data.scoreMinus(2); // minus 1 every cycle
+			}else if(data.currentScore < 2000){
+				data.scoreMinus(4); // minus 1 every cycle
+			}else if(data.currentScore < 4000){
+				data.scoreMinus(8); // minus 1 every cycle
+			}
+		}
 		if(pjs.game.getTime() - self.tmpT > 1000){
 			self.tmpT = pjs.game.getTime();
 			// save
 			storage.matrixSave();
 			storage.bestScoreSave();
-			// timeLine decrease
-			// 
-			// next line should moved somewhere because it executes 60 times per second
-			this.timeLineStep = scopeObjects.timeLine.maxW / 5; // 1000 / 2 = 1000 ms
-
-			scopeObjects.timeLine.w = scopeObjects.timeLine.getSize().w - this.timeLineStep; //timeLineStep;
-
-			if(scopeObjects.timeLine.getSize().w <= 0){
-				scopeObjects.timeLine.w = scopeObjects.timeLine.maxW;
-				data.scoreMinus(1); // minus 1 every cycle
-			}
 		}
 
 		config.debug ? scopeObjects.fpsText.draw(scopeObjects.fpsText.text = pjs.system.getFPS()) : false;
