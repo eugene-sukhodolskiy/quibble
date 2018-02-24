@@ -6,10 +6,10 @@
         id        = "com.phonegap.rocktherocket"
         version   = "0.0.1">
 
-    <name>Rock The Rocket</name>
+    <name>Quibble</name>
 
     <description>
-        Game rock the rocket
+        Quibble Game 
     </description>
 
     <author href="https://about.me/sukhodolskiy" email="goldmikki@gmail.com">
