@@ -42,7 +42,7 @@ var Config = function(){
 
 	};
 
-	this.controlType = 'touch'; // mouse or touch
+	this.controlType = 'mouse'; // mouse or touch
 	this.moveCellSpeed = .1;
 	this.startCellGridPos = pjs.vector.point(asu.s(35), asu.s(100));
 	this.lineWidth = asu.s(5);
