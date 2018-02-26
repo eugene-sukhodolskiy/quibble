@@ -102,12 +102,8 @@
 
 
 
-	<platform name="android">
-	  <icon src="resources/media/cactus.png" density="ldpi" />
-	  <icon src="resources/media/cactus.png" density="mdpi" /> <!-- res/android/mdpi.png -->
-	  <icon src="resources/media/cactus.png" density="hdpi" />
-	  <icon src="resources/media/cactus.png" density="xhdpi" />
-	</platform>
+	<icon src="resources/media/cactus.png" />
+
 
 
 
