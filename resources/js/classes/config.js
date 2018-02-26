@@ -16,8 +16,8 @@ var Config = function(){
 	};
 
 	this.fieldMatrixSize = {
-		w: 6,
-		h: 11
+		w: 5,
+		h: 8
 	};
 	
 	// this.fieldMatrixSize = {
