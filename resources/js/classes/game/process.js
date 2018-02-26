@@ -36,7 +36,7 @@ var Process = function(){
 		scopeObjects.gameFieldBackground.draw();
 		self.cornerCircle.draw();
 		scopeObjects.menuIco.draw(); //
-		scopeObjects.timeLine.draw();
+		
 
 
 		if(config.controlType == 'mouse'){
@@ -62,6 +62,8 @@ var Process = function(){
 		scopeObjects.gameScore.draw();
 		var time = pjs.game.getTime();
 		
+
+		scopeObjects.timeLine.draw();
 		//timeLine decrease
 		scopeObjects.timeLine.w -= 5; 
 		if(scopeObjects.timeLine.getSize().w <= 0){
