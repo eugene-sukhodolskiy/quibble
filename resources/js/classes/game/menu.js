@@ -105,7 +105,7 @@ var Menu = function(){
 				if(mouse.isPeekObject('LEFT', scopeObjects[i])){
 					self.controlCallback[i](scopeObjects[i]);
 				}
-			}else if(self.controlType == 'touch'){
+			}else if(config.controlType == 'touch'){
 				if(touch.isPeekObject(scopeObjects[i])){
 					self.controlCallback[i](scopeObjects[i]);
 				}
