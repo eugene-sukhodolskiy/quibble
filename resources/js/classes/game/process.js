@@ -48,7 +48,7 @@ var Process = function(){
 		box.w = 1;
 		box.h = 1;
 
-		if(scopeObjects.menuIco.isStaticIntersect(box) && pjs.mouseControl.isPress("LEFT")){
+		if( ((config.controlType == 'mouse' && mouse.isPress("LEFT")) || (config.controlType == 'touch' && touch.isPress())) && scopeObjects.menuIco.isStaticIntersect(box)){
 			game.setLoop('Menu');
 		}
 
