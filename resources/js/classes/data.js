@@ -20,5 +20,4 @@ var Data = function(){
 		}
 	}
 
-	this.audio = document.getElementById('audio'); // music
 }

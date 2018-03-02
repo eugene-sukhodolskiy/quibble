@@ -26,10 +26,9 @@ var Menu = function(){
 
 
 		if(data.musicState){ // audio init
-			data.audio.play();
-			data.audio.loop = true;
+			scopeObjects.backgroundMusic.play();
 		}else if(!data.musicState){
-			data.audio.pause();
+			scopeObjects.backgroundMusic.stop();
 		}else if(data.soundcState){
 			// data.audio.play();
 			// data.audio.loop = true;

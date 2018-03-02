@@ -71,9 +71,9 @@ var Settings = function(){
 			data.musicState = !data.musicState;
 			// music ON / OFF
 			if(!data.musicState){
-				data.audio.pause();
+				scopeObjects.backgroundMusic.stop();
 			}else{
-				data.audio.play();
+				scopeObjects.backgroundMusic.play();
 			}
 		},
 		'BackToGameMenu': function(t){

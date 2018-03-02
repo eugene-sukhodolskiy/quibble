@@ -185,6 +185,8 @@ var ScopeObjects = function(params){
 	});
 
 	this.deleteObjSound = self.pjs.audio.newAudio('resources/media/metal-short-hit-dampened.mp3', .6);
+	this.backgroundMusic = self.pjs.audio.newAudio('resources/media/Clouds.mp3', .5);
+	self.backgroundMusic.setNextPlay(self.backgroundMusic);
 	
 	positioning.posX(self.gameScore, 40);
 	positioning.posY(self.gameScore, 5.5);
