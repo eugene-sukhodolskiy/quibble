@@ -12,6 +12,7 @@ var Field = function(params){
 	this.lineArr = [];
 	this.context = self.pjs.system.getContext();
 	this.idCurrentCellWithMouse = false;
+	this.gameOverFlag = false;
 
 
 	// methods
@@ -220,6 +221,11 @@ var Field = function(params){
 		self.cellDown();
 		self.removeUnvisibleCells();
 		self.setMoveToPoint();
+		if(!self.gameOverFlag){
+			if(self.checkOnGameOver3()){
+				self.gameOverFlag = true;
+			}
+		}
 	}
 
 	this.cellDown = function(){
@@ -328,6 +334,7 @@ var Field = function(params){
 		}
 	}
 
+	// not used
 	this.checkOnGameOver = function(){
 		var ns = self.config.fieldMatrixSize.h - 1;
 		var is = self.config.fieldMatrixSize.w - 1;
@@ -368,6 +375,106 @@ var Field = function(params){
 		}
 
 		return true;
+	}
+
+	// not used
+	this.checkOnGameOver2 = function(){
+		var colors = [];
+		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+			for(var n=0; n<self.config.fieldMatrixSize.h; n++){
+				var issetColor = false;
+				for(var j in colors){
+					if(colors[j] == self.matrix[i][n].fillColor){
+						issetColor = true;
+						break;
+					}
+				}
+				if(!issetColor){
+					colors.push(self.matrix[i][n].fillColor);
+				}
+			}
+		}
+
+		console.log(colors);
+
+		var colorSorting = {};
+		for(var j in colors){
+			if(typeof colorSorting[colors[j]] == 'undefined'){
+				colorSorting[colors[j]] = [];
+			}
+			for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+				for(var n=0; n<self.config.fieldMatrixSize.h; n++){
+					if(self.matrix[i][n].fillColor == colors[j]){
+						colorSorting[colors[j]].push(self.matrix[i][n]);
+					} 
+				}
+			}
+		}
+
+		console.log(colorSorting);
+
+		// if(i && (Math.abs(self.activeCell[i].matrixIndex.i - self.activeCell[i-1].matrixIndex.i) > 1 || Math.abs(self.activeCell[i].matrixIndex.n - self.activeCell[i-1].matrixIndex.n) > 1)){
+		// 	return false;
+		// }
+		
+
+		// search amount of elements in one iteration
+		// for(var color in colorSorting){
+		// 	var count = 0;
+		// 	var 
+		// 	for(var cell in colorSorting[color]){
+		// 		if(colorSorting[color]
+		// 	}
+		// }
+
+	}
+
+	this.checkOnGameOver3 = function(){
+		
+		for(var i=0; i<self.config.fieldMatrixSize.w - 2; i++){
+			for(var n=0; n<self.config.fieldMatrixSize.h - 2; n++){
+				var tmp_matrix = {};
+				for(var k=0; k<3; k++){
+					tmp_matrix[k] = [];
+					for(var h=0; h<3; h++){
+						tmp_matrix[k].push(self.matrix[i+k][n+h]);
+					}
+				}
+				if(self.comparasing(tmp_matrix)){
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	this.comparasing = function(tmp_matrix){
+		console.log(tmp_matrix);
+		var map = self.config.possibleVariants;
+
+		for(var i in map){
+			var col = 0;
+			var counter = 0;
+			for(var j in map[i]){
+				for(var k in map[i][j]){
+					if(map[i][j][k] == 1){
+						if(col == 0){
+							col = tmp_matrix[j][k].fillColor;
+						}else{
+							if(tmp_matrix[j][k].fillColor == col){
+								counter++;
+							}
+						}
+					}
+				}
+			}
+			if(counter >= 2){
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	this.existCellDown = function(){ 

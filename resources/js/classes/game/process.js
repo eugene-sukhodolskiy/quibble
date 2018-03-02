@@ -27,7 +27,7 @@ var Process = function(){
 		scopeObjects.timeLine.w = screen.w - scopeObjects.timeLine.x * 2; // it makes some gaps in right side (the same as left one)
 		scopeObjects.timeLine.maxW = screen.w - scopeObjects.timeLine.x * 2; 
 
-
+		field.gameOverFlag = false;
 
 	}
 
@@ -52,7 +52,7 @@ var Process = function(){
 			game.setLoop('Menu');
 		}
 
-		if(field.checkOnGameOver()){
+		if(field.gameOverFlag){
 			game.setLoop('GameOver');
 		}
 		field.draw();
