@@ -222,7 +222,7 @@ var Field = function(params){
 		self.removeUnvisibleCells();
 		self.setMoveToPoint();
 		if(!self.gameOverFlag){
-			if(self.checkOnGameOver3()){
+			if(!self.checkOnGameOver3()){
 				self.gameOverFlag = true;
 			}
 		}

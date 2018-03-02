@@ -25,7 +25,11 @@ var Config = function(){
 	// 	h: 12
 	// };
 
-	this.circleColors = ['#F44336', '#E91E63', '#42A5F5', '#880E4F', '#9C27B0', '#B388FF']; // '#9E9D24', '#FDD835', '#E65100', '#4E342E'
+	//this.circleColors = ['#F44336', '#E91E63', '#42A5F5', '#880E4F', '#9C27B0', '#B388FF']; // '#9E9D24', '#FDD835', '#E65100', '#4E342E'
+	this.circleColors = [];
+	for(var i=0;i<6;i++){
+		this.circleColors.push(RGBARandom(30, 255));
+	}
 
 	this.circleRadius = asu.s(15); // 15
 	// this.circleRadius = asu.s(14);
@@ -113,6 +117,16 @@ var Config = function(){
 			[0, 1],
 			[1],
 			[0, 1]
+		],
+		[
+			[0, 0, 0],
+			[0, 1, 1],
+			[0, 0, 1]
+		],
+		[
+			[0, 1, 1],
+			[0, 1, 0],
+			[0, 0, 0]
 		]
 	];
 }

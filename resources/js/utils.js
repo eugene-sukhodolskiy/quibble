@@ -98,3 +98,12 @@ var AbsoluteSizeUnit = function(screen, startedSize){
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
+
+var RGBARandom = function(min, max){
+	var str = 'rgba(';
+	str += Math.floor(getRandomArbitrary(min,max)) + ',';
+	str += Math.floor(getRandomArbitrary(min,max)) + ',';
+	str += Math.floor(getRandomArbitrary(min,max)) + ',';
+	str += '1)';
+	return str;
+}
