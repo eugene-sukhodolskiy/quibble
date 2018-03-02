@@ -47,6 +47,6 @@ var Config = function(){
 	this.startCellGridPos = pjs.vector.point(asu.s(35), asu.s(100));
 	this.lineWidth = asu.s(5);
 	this.lineColor = '#03A9F4';
-	this.minActiveCellCount = 2;
+	this.minActiveCellCount = 3;
 	this.debug = false; // true - show current fps 
 }

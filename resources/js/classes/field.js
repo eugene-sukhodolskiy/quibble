@@ -289,7 +289,7 @@ var Field = function(params){
 	}
 
 	this.scoreCounter = function(){
-		var points = Math.pow(2, self.activeCell.length) / 2;
+		var points = Math.ceil(Math.pow(3, self.activeCell.length) / Math.pow(2, self.activeCell.length));
 		data.scorePlus(points);
 	}
 

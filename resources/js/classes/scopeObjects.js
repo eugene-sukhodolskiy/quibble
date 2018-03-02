@@ -178,7 +178,7 @@ var ScopeObjects = function(params){
 	}
 
 	this.gameScore = self.pjs.game.newTextObject({
-		size: asu.s(21),
+		size: asu.s(22),
 		text: 'Score: ' + data.currentScore,
 		color: '#C62828',
 		font: 'Indie Flower'
