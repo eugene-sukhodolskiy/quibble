@@ -93,7 +93,11 @@ var Menu = function(){
 			// console.log("123");
 		},
 		'ExitGame': function(t){
-			window.close();
+			if(config.controlType == 'mouse'){
+				window.close(); // PC
+			}else{
+				navigator.app.exitApp(); // android
+			}
 		}
 		// load Game
 	}
