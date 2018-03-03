@@ -77,7 +77,8 @@ var Field = function(params){
 				if(typeof self.matrix[i] == 'undefined'){
 					self.matrix[i] = [];
 				}
-				var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(startPos.x + self.config.fieldCellSize.w * i, startPos.y + self.config.fieldCellSize.h * n));
+				var cell = self.getCell(self.getRandomColor(self.config.circleColors), self.pjs.vector.point(startPos.x + self.config.fieldCellSize.w * i, 
+					startPos.y + self.config.fieldCellSize.h * n));
 				cell.matrixIndex = {"i": i, "n": n};
 				self.matrix[i].push(cell);
 			}
@@ -431,13 +432,19 @@ var Field = function(params){
 
 	this.checkOnGameOver3 = function(){
 		
-		for(var i=0; i<self.config.fieldMatrixSize.w - 2; i++){
-			for(var n=0; n<self.config.fieldMatrixSize.h - 2; n++){
+		for(var i=0; i<self.config.fieldMatrixSize.w; i++){
+			for(var n=0; n<self.config.fieldMatrixSize.h; n++){
 				var tmp_matrix = {};
 				for(var k=0; k<3; k++){
 					tmp_matrix[k] = [];
 					for(var h=0; h<3; h++){
-						tmp_matrix[k].push(self.matrix[i+k][n+h]);
+						if(i>=self.config.fieldMatrixSize.w - 2 || n>=self.config.fieldMatrixSize.h - 2){
+							var cell = self.getCell("rgba(0,0,0,0)", {x: 0, y: 0, z: 0}); // empty cell
+							cell.matrixIndex = {"i": i+k, "n": n+h};
+							tmp_matrix[k].push(cell);
+						}else{
+							tmp_matrix[k].push(self.matrix[i+k][n+h]);
+						}
 					}
 				}
 				if(self.comparasing(tmp_matrix)){
