@@ -17,6 +17,7 @@ var Data = function(){
 		self.currentScore -= minus;
 		if(self.currentScore < 0){
 			self.currentScore = 0;
+			field.gameOverFlag = true;
 		}
 	}
 

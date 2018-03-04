@@ -16,8 +16,8 @@ var Config = function(){
 	};
 
 	this.fieldMatrixSize = {
-		w: 4,
-		h: 4
+		w: 5,
+		h: 8
 	};
 	
 	// this.fieldMatrixSize = {
@@ -53,6 +53,7 @@ var Config = function(){
 	this.lineColor = '#03A9F4';
 	this.minActiveCellCount = 3;
 	this.debug = false; // true - show current fps 
+	this.timeLineColor = 'black';
 
 	this.possibleVariants = [
 		[ // 1

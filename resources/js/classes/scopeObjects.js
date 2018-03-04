@@ -208,10 +208,28 @@ var ScopeObjects = function(params){
 
 	this.timeLine = game.newRectObject(   { 
      //w : self.screen.w, 
-     h : 10, 
-     fillColor : "#64DD17", 
+     h : asu.s(2), 
+     fillColor : self.config.timeLineColor, 
      maxW : 0 // my param max width (depends on screen resolution)
      //timerDuration : 5000 // 5 s
    });
+
+	this.timeLineDraw = function(){
+		scopeObjects.timeLine.draw();
+		//timeLine decrease
+		scopeObjects.timeLine.w -= 5; 
+		if(scopeObjects.timeLine.getSize().w <= 0){
+			scopeObjects.timeLine.w = scopeObjects.timeLine.maxW;
+			if(data.currentScore < 500){
+				data.scoreMinus(1); // minus 1 every cycle
+			}else if(data.currentScore < 1000){
+				data.scoreMinus(2); // minus 1 every cycle
+			}else if(data.currentScore < 2000){
+				data.scoreMinus(4); // minus 1 every cycle
+			}else if(data.currentScore < 4000){
+				data.scoreMinus(8); // minus 1 every cycle
+			}
+		}
+	}
 
 }

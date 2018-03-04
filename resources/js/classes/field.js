@@ -480,7 +480,7 @@ var Field = function(params){
 				return true;
 			}
 		}
-
+		console.log('false')
 		return false;
 	}
 

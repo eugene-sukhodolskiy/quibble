@@ -3,7 +3,11 @@
 var Process = function(){
 	var self = this;
 	this.tmpT = pjs.game.getTime();
+	this.timeLineStartIfScore = 100;
+	this.timeLineDrawFlag = false;
+
 	this.entry = function(){
+		self.timeLineDrawFlag = false;
 		positioning.posX(scopeObjects.menuIco, 6.5);
 		positioning.posY(scopeObjects.menuIco, 5);
 		// scopeObjects.menuIco.setShadow({ 
@@ -22,8 +26,8 @@ var Process = function(){
 		positioning.posY(self.cornerCircle, 5);
 		
 
-		positioning.posX(scopeObjects.timeLine, 6.5);
-		positioning.posY(scopeObjects.timeLine, 15);
+		positioning.posX(scopeObjects.timeLine, 0);
+		positioning.posY(scopeObjects.timeLine, 0);
 		scopeObjects.timeLine.w = screen.w - scopeObjects.timeLine.x * 2; // it makes some gaps in right side (the same as left one)
 		scopeObjects.timeLine.maxW = screen.w - scopeObjects.timeLine.x * 2; 
 
@@ -62,22 +66,14 @@ var Process = function(){
 		scopeObjects.gameScore.draw();
 		var time = pjs.game.getTime();
 		
-
-		scopeObjects.timeLine.draw();
-		//timeLine decrease
-		scopeObjects.timeLine.w -= 5; 
-		if(scopeObjects.timeLine.getSize().w <= 0){
-			scopeObjects.timeLine.w = scopeObjects.timeLine.maxW;
-			if(data.currentScore < 500){
-				data.scoreMinus(1); // minus 1 every cycle
-			}else if(data.currentScore < 1000){
-				data.scoreMinus(2); // minus 1 every cycle
-			}else if(data.currentScore < 2000){
-				data.scoreMinus(4); // minus 1 every cycle
-			}else if(data.currentScore < 4000){
-				data.scoreMinus(8); // minus 1 every cycle
-			}
+		if(!self.timeLineDrawFlag && self.timeLineStartIfScore < data.currentScore){
+			self.timeLineDrawFlag = true;
 		}
+
+		if(self.timeLineDrawFlag){
+			scopeObjects.timeLineDraw();
+		}
+		
 		if(pjs.game.getTime() - self.tmpT > 1000){
 			self.tmpT = pjs.game.getTime();
 			// save
