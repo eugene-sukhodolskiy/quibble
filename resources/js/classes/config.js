@@ -6,7 +6,8 @@ var Config = function(){
 		"NewGame": "Start",
 		"LoadGame": "Load",
 		"SettingsGame": "Settings",
-		"ExitGame": "Exit"
+		// "ExitGame": "Exit",
+		"About": "About"
 	};
 
 	this.gameSettings = {

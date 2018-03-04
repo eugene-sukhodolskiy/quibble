@@ -98,6 +98,9 @@ var Menu = function(){
 			}else{
 				navigator.app.exitApp(); // android
 			}
+		},
+		'About': function(t){
+			// switch to about screen
 		}
 		// load Game
 	}
