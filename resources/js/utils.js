@@ -101,9 +101,20 @@ function getRandomArbitrary(min, max) {
 
 var RGBARandom = function(min, max){
 	var str = 'rgba(';
-	str += Math.floor(getRandomArbitrary(min,max)) + ',';
-	str += Math.floor(getRandomArbitrary(min,max)) + ',';
-	str += Math.floor(getRandomArbitrary(min,max)) + ',';
+	str += Math.floor(getRandomArbitrary(min * 20,max * 20)) + ',';
+	str += Math.floor(getRandomArbitrary(min * 20,max * 20)) + ',';
+	str += Math.floor(getRandomArbitrary(min * 20,max * 20)) + ',';
 	str += '1)';
 	return str;
+}
+
+var canvasBlur = function (canvas, ctx, blur) {
+    ctx.globalAlpha = 1 / (2 * blur);
+    for (var y = -blur; y <= blur; y += 2) {
+        for (var x = -blur; x <= blur; x += 2) {
+            ctx.drawImage(canvas, x, y);
+            if (x >= 0 && y >= 0) ctx.drawImage(canvas, -(x - 1), -(y - 1));
+        }
+    }
+    ctx.globalAlpha = 1;
 }

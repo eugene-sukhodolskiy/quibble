@@ -8,6 +8,8 @@ var s = pjs.vector.size;
 var screen = game.getWH();
 var mouse = pjs.mouseControl.initMouseControl();
 var touch = pjs.touchControl.initTouchControl();
+var ctx = pjs.system.getContext();
+var canvas = pjs.system.getCanvas();
 
 // Oleh want to see this code.
 // var music = new Audio('resources/media/Clouds.mp3');

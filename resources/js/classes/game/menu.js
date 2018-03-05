@@ -46,14 +46,15 @@ var Menu = function(){
 	this.update = function(){
 		scopeObjects.monitorParticles();
 		// rendering game name
-		// 
+
 		setTimeout(function(){ // show game logo 2.5 s
 			self.flag = true;
 		}, 2500);
 		
 		if(self.flag){
 			pjs.OOP.drawArr(scopeObjects.particles);
-			
+			canvasBlur(canvas, ctx, config.menuBlurRadius);
+
 			for(var i in config.gameMenu){
 				scopeObjects[i].draw(); //
 			}
