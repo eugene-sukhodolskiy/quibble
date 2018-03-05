@@ -31,9 +31,16 @@ var ScopeObjects = function(params){
 	this.bestScore = self.pjs.game.newTextObject({
 		//text: "Best score: " + "result", // we write it in menu.js
 		font: "Indie Flower",
-		color: "white",
-		size: asu.s(20)
+		color: "#FDD835",
+		size: asu.s(25)
 	});
+
+	self.bestScore.setShadow(   { 
+			     shadowColor : "#37474F", 
+			     shadowBlur : asu.s(5), 
+			     shadowX : 0, 
+			     shadowY : 0
+			   });
 
 	this.generateMenuItems = function(){
 		for(var i in self.config.gameMenu){
@@ -233,5 +240,20 @@ var ScopeObjects = function(params){
 			// }
 		}
 	}
+
+	this.cup = game.newImageObject({ 
+     file : "resources/imgs/cup.png", 
+     x : 0, 
+     y : 0, 
+     w : asu.s(50)
+   });
+
+	this.cupBackground = game.newRectObject({
+		x: self.screen.w / 100 * 20,
+		y: 0,
+		w: self.screen.w / 100 * 60,
+		h: asu.s(100),
+		fillColor: "rgba(255, 255, 255, .5)"
+	});
 
 }

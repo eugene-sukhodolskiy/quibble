@@ -20,6 +20,8 @@ var Settings = function(){
 
 		pjs.OOP.drawArr(scopeObjects.particles);
 
+		canvasBlur(canvas, ctx, config.menuBlurRadius);
+
 		for(var i in config.gameSettings){
 			//console.log(i);
 			 if(!data.musicState && i == "MusicGame"){ // something like this for SoundGame

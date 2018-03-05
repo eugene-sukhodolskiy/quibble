@@ -6,14 +6,14 @@ var Menu = function(){
 	this.entry = function(){
 		positioning.centerXY(scopeObjects.gameName);
 
-		positioning.pos(scopeObjects.bestScore, 'x', 70);
-		positioning.pos(scopeObjects.bestScore, 'y', 5);
+		positioning.centerX(scopeObjects.bestScore);
+		positioning.pos(scopeObjects.bestScore, 'y', 17);
 
-		var counter = 0;
+		var counter = 1.5;
 		for(var i in config.gameMenu){
 			counter++;
 			positioning.centerX(scopeObjects[i]);
-			positioning.pos(scopeObjects[i], 'y', counter * 15);
+			positioning.pos(scopeObjects[i], 'y', counter * 13);
 		}
 
 		data.bestScore = storage.bestScoreLoad(); // it needs to be restored here because we will show this on menu screen
@@ -41,6 +41,10 @@ var Menu = function(){
 
 		positioning.posX(scopeObjects.fpsText, 1);
 		positioning.posY(scopeObjects.fpsText, 1);
+
+		positioning.centerX(scopeObjects.cup);
+		positioning.posY(scopeObjects.cup, 5);
+		positioning.posY(scopeObjects.cupBackground, 4);
 	}
 
 	this.update = function(){
@@ -54,12 +58,14 @@ var Menu = function(){
 		if(self.flag){
 			pjs.OOP.drawArr(scopeObjects.particles);
 			canvasBlur(canvas, ctx, config.menuBlurRadius);
+			scopeObjects.cup.draw();
+			// scopeObjects.cupBackground.draw();
 
 			for(var i in config.gameMenu){
 				scopeObjects[i].draw(); //
 			}
 
-			scopeObjects.bestScore.text = 'Best: ' + data.bestScore;
+			scopeObjects.bestScore.text = data.bestScore;
 			scopeObjects.bestScore.draw();
 
 			config.debug ? scopeObjects.fpsText.draw(scopeObjects.fpsText.text = pjs.system.getFPS()) : false;
