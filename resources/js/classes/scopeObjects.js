@@ -36,11 +36,11 @@ var ScopeObjects = function(params){
 	});
 
 	self.bestScore.setShadow(   { 
-			     shadowColor : "#37474F", 
-			     shadowBlur : asu.s(5), 
-			     shadowX : 0, 
-			     shadowY : 0
-			   });
+	     shadowColor : "#37474F", 
+	     shadowBlur : asu.s(5), 
+	     shadowX : 0, 
+	     shadowY : 0
+	   });
 
 	this.generateMenuItems = function(){
 		for(var i in self.config.gameMenu){

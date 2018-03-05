@@ -32,9 +32,9 @@ var Config = function(){
 		this.circleColors.push(RGBARandom(1.5, 11.5));
 	}
 
-	this.circleRadius = asu.s(15); // 15
+	this.circleRadius = asu.s(20); // 15
 	// this.circleRadius = asu.s(14);
-	this.fieldCellSize = s(asu.s(45), asu.s(41));
+	this.fieldCellSize = s(screen.w / 100 * 19, screen.h / 100 * 10.5);
 	 // this.fieldCellSize = s(asu.s(42), asu.s(35));
 
 	this.particles = {
