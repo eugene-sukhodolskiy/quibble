@@ -3,8 +3,8 @@ var Config = function(){
 	this.fps = 60;
 	this.gameName = "Quibble";
 	this.gameMenu = {
-		"NewGame": "Start",
-		"LoadGame": "Load",
+		"NewGame": "New game",
+		"LoadGame": "Load game",
 		"SettingsGame": "Settings",
 		// "ExitGame": "Exit",
 		"About": "About"

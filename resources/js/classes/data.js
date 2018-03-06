@@ -5,6 +5,7 @@ var Data = function(){
 	this.gameoverState = false;
 	this.soundState = true;
 	this.musicState = true;
+	this.screenSave = '';
 
 	this.scorePlus = function(plus){
 		self.currentScore += plus;

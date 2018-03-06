@@ -118,3 +118,13 @@ var canvasBlur = function(canvas, ctx, blur) {
     }
     ctx.globalAlpha = 1;
 }
+
+var fixCrossOriginImgLoad = function(file){
+	var img = document.createElement('img');
+	img.src = file,
+	img.setAttribute('crossOrigin', '*');
+	img.crossOrigin = "*";
+	img.style = "display: none";
+	document.getElementsByTagName('body')[0].appendChild(img);
+	return file;
+}

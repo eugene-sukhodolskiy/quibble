@@ -206,7 +206,7 @@ var ScopeObjects = function(params){
 	});
 
 	this.menuIco = game.newImageObject({ 
-     file : "resources/media/menu-icon.png", 
+     file : fixCrossOriginImgLoad("resources/media/menu-icon.png"), 
      x : 0, 
      y : 0, 
      w : asu.s(30)
@@ -242,11 +242,13 @@ var ScopeObjects = function(params){
 	}
 
 	this.cup = game.newImageObject({ 
-     file : "resources/imgs/cup.png", 
+     file : fixCrossOriginImgLoad("resources/imgs/cup.png"), 
      x : 0, 
      y : 0, 
      w : asu.s(50)
    });
+
+	this.cup.crossOrigin = "anonymous";
 
 	this.cupBackground = game.newRectObject({
 		x: self.screen.w / 100 * 20,

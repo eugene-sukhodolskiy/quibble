@@ -57,6 +57,7 @@ var Process = function(){
 		}
 
 		if(field.gameOverFlag){
+			// data.screenSave = canvas.toDataURL();
 			game.setLoop('GameOver');
 		}
 		field.draw();
