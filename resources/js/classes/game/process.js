@@ -19,7 +19,7 @@ var Process = function(){
 	 
 		self.cornerCircle = pjs.game.newCircleObject({		   
 			fillColor: '#004D40',
-			radius: config.circleRadius
+			radius: asu.s(15)
 		});
 
 		positioning.posX(self.cornerCircle, 6.5);
