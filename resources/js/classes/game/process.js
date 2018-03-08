@@ -19,11 +19,11 @@ var Process = function(){
 	 
 		self.cornerCircle = pjs.game.newCircleObject({		   
 			fillColor: '#004D40',
-			radius: asu.s(15)
+			radius: asu.s(20)
 		});
 
-		positioning.posX(self.cornerCircle, 6.5);
-		positioning.posY(self.cornerCircle, 5);
+		positioning.posX(self.cornerCircle, 4.5);
+		positioning.posY(self.cornerCircle, 4);
 		
 
 		positioning.posX(scopeObjects.timeLine, 0);
@@ -52,7 +52,7 @@ var Process = function(){
 		box.w = 1;
 		box.h = 1;
 
-		if( ((config.controlType == 'mouse' && mouse.isPress("LEFT")) || (config.controlType == 'touch' && touch.isPress())) && scopeObjects.menuIco.isStaticIntersect(box)){
+		if( ((config.controlType == 'mouse' && mouse.isPress("LEFT")) || (config.controlType == 'touch' && touch.isPress())) && self.cornerCircle.isStaticIntersect(box)){
 			game.setLoop('Menu');
 		}
 
