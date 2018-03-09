@@ -8,7 +8,7 @@ var Process = function(){
 
 	this.entry = function(){
 		self.timeLineDrawFlag = false;
-		positioning.posX(scopeObjects.menuIco, 6.5);
+		positioning.posX(scopeObjects.menuIco, 6.25);
 		positioning.posY(scopeObjects.menuIco, 5);
 		// scopeObjects.menuIco.setShadow({ 
 		//      shadowColor : "#235e7b", 
@@ -53,6 +53,12 @@ var Process = function(){
 		box.h = 1;
 
 		if( ((config.controlType == 'mouse' && mouse.isPress("LEFT")) || (config.controlType == 'touch' && touch.isPress())) && self.cornerCircle.isStaticIntersect(box)){
+			for(var i in config.gameMenu){ 
+				if(i == "NewGame")
+				{
+					scopeObjects[i].text  = " Resume";
+				}
+			}
 			game.setLoop('Menu');
 		}
 
